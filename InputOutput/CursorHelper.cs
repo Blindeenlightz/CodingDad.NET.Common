@@ -3,16 +3,19 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Windows.Interop;
-using System.Windows.Media.Imaging;
-using System.Windows.Media;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using Brushes = System.Windows.Media.Brushes;
+using FontFamily = System.Windows.Media.FontFamily;
+using Point = System.Windows.Point;
 
-namespace DesktopDesigner.Helpers
+namespace CodingDad.Common.InputOutput
 {
     //From https://wpf.2000things.com/tag/drag-and-drop/
-    public class CursorHelper
+    internal class CursorHelper
     {
         /// <summary>
         /// Creates a cursor containing a given string.
