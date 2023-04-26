@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\EffectCopy.png" />
+    <None Remove="Icons\EffectLink.png" />
+    <None Remove="Icons\EffectMove.png" />
+    <None Remove="Icons\EffectNone.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\EffectCopy.png" />
+    <Resource Include="Icons\EffectLink.png" />
+    <Resource Include="Icons\EffectMove.png" />
+    <Resource Include="Icons\EffectNone.png" />
+  </ItemGroup>
+
+</Project>

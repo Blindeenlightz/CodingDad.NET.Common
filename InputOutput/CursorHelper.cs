@@ -15,7 +15,7 @@ using Point = System.Windows.Point;
 namespace CodingDad.Common.InputOutput
 {
     //From https://wpf.2000things.com/tag/drag-and-drop/
-    internal class CursorHelper
+    public class CursorHelper
     {
         /// <summary>
         /// Creates a cursor containing a given string.
