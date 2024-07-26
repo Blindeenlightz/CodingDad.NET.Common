@@ -183,7 +183,7 @@ Here's a complete example in context:
 
 This setup allows you to bind a command to the window's close event, enabling you to perform custom actions when the window is closed.
 
-##Commands
+## Commands
 ### RelayCommand
 
 The `RelayCommand` class is a simple yet powerful implementation of the `ICommand` interface that allows you to delegate command logic using delegates. This class is especially useful for implementing commands in MVVM (Model-View-ViewModel) patterns in WPF, UWP, and other XAML-based applications.
@@ -262,7 +262,7 @@ Here's a complete example in context:
 
 This setup allows you to easily bind commands to UI elements and define the command logic in your ViewModel.
 
-##CustomControls
+## CustomControls
 
 ### ResizableGridControl
 
@@ -325,7 +325,7 @@ Here's a complete example in context:
 
 This setup allows you to use the ResizableGridControl to create grids with dynamically resizable rows and columns. Users can resize the rows and columns by dragging the edges with the mouse.
 
-##DbHelpers
+## DbHelpers
 ### MongoDbHelper
 
 The `MongoDbHelper<T>` class is a general-purpose interface for interacting with a MongoDB database. This class provides methods to create, read, update, and delete documents in a MongoDB collection, and it uses the `LoggerProvider` for logging operations.
