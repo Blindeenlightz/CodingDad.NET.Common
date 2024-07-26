@@ -5,9 +5,6 @@ using System.Windows;
 
 namespace CodingDad.DragAndDrop
 {
-    /// <summary>
-    /// The default drag handler for CodingDad.DragDrop.DragDrop.
-    /// </summary>
     public class DefaultDragHandler : IDragSource
     {
         /// <inheritdoc />

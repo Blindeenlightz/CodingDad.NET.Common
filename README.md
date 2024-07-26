@@ -48,6 +48,15 @@ The `CodingDad.NET.Common` library is a versatile and comprehensive set of compo
     - [Methods](#methods-7)
     - [Usage](#usage-7)
     - [Example](#example-2)
+- [Factories](#factories)
+  - [BehaviorFactory](#behaviorfactory)
+    - [Methods](#methods-8)
+    - [Usage](#usage-8)
+    - [Example](#example)
+  - [ViewModelFactory](#viewmodelfactory)
+    - [Methods](#methods-9)
+    - [Usage](#usage-9)
+    - [Example](#example-2)
 
 ## Behaviors
 
@@ -613,3 +622,162 @@ bool isVerified = await sqliteHelper.VerifyUserAsync("user@example.com", "passwo
 ```
 
 This setup allows you to easily interact with a SQLite database, performing CRUD operations and logging activities using the LoggerProvider.
+
+## Factories
+### BehaviorFactory
+
+The `BehaviorFactory` class provides methods to create instances of `Behavior` types with dependency injection support using MEF (Managed Extensibility Framework). This class is particularly useful for scenarios where behaviors require constructor parameters or dependency injection.
+
+#### Methods
+
+- `CreateBehavior<T>(params object[] constructorArgs) where T : Behavior`: Creates an instance of a `Behavior` with the specified constructor arguments.
+- `CreateBehavior(Type type)`: General-purpose method to create an instance of any `Behavior` type.
+- `Initialize(CompositionContainer compositionContainer)`: Initializes the `BehaviorFactory` with a `CompositionContainer` for dependency injection.
+
+#### Private Methods
+
+- `EnsureInitialized()`: Ensures that the factory has been initialized before use.
+- `SatisfyImports(Behavior instance)`: Performs MEF composition on the instance to inject dependencies.
+- `ValidateInstance(Behavior instance, Type type)`: Validates that an instance was created successfully.
+
+### Usage
+
+To use the `BehaviorFactory` class, follow these steps:
+
+1. Initialize the `BehaviorFactory` with a `CompositionContainer`:
+    ```csharp
+    var catalog = new AggregateCatalog();
+    // Add parts to the catalog here
+    var container = new CompositionContainer(catalog);
+    BehaviorFactory.Initialize(container);
+    ```
+
+2. Create an instance of a `Behavior` with constructor arguments:
+    ```csharp
+    var behavior = BehaviorFactory.CreateBehavior<MyBehavior>(arg1, arg2);
+    ```
+
+3. Create an instance of a `Behavior` without constructor arguments:
+    ```csharp
+    var behavior = BehaviorFactory.CreateBehavior(typeof(MyBehavior));
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using Microsoft.Xaml.Behaviors;
+
+public class MyBehavior : Behavior<UIElement>
+{
+    [Import]
+    public IService MyService { get; set; }
+
+    protected override void OnAttached()
+    {
+        base.OnAttached();
+        // Use MyService
+    }
+}
+
+// Setup MEF
+var catalog = new AggregateCatalog();
+catalog.Catalogs.Add(new AssemblyCatalog(typeof(MyBehavior).Assembly));
+var container = new CompositionContainer(catalog);
+BehaviorFactory.Initialize(container);
+
+// Create an instance of MyBehavior
+var behavior = BehaviorFactory.CreateBehavior<MyBehavior>();
+```
+
+This setup allows you to create and use behaviors with dependency injection using MEF.
+
+### ViewModelFactory
+
+The `ViewModelFactory` class provides methods to create instances of ViewModel types with dependency injection support using MEF (Managed Extensibility Framework). This class is particularly useful for scenarios where ViewModels require constructor parameters or dependency injection.
+
+#### Methods
+
+- `CreateViewModel<T>() where T : new()`: Creates an instance of a ViewModel of type `T` with a parameterless constructor and satisfies its dependencies using MEF.
+- `CreateViewModel<T>(params object[] constructorArgs) where T : class`: Creates an instance of a ViewModel of type `T` with the specified constructor arguments and satisfies its dependencies using MEF.
+- `CreateViewModel(Type type)`: Creates an instance of a specified type and satisfies its dependencies using MEF.
+- `Initialize(CompositionContainer compositionContainer)`: Initializes the `ViewModelFactory` with a `CompositionContainer` for dependency injection.
+
+#### Private Methods
+
+- `EnsureInitialized()`: Ensures that the factory has been initialized before use.
+- `SatisfyImports(object instance)`: Performs MEF composition on the instance to inject dependencies.
+- `ValidateInstance(object instance, Type type)`: Validates that an instance was created successfully.
+
+### Usage
+
+To use the `ViewModelFactory` class, follow these steps:
+
+1. Initialize the `ViewModelFactory` with a `CompositionContainer`:
+    ```csharp
+    var catalog = new AggregateCatalog();
+    // Add parts to the catalog here
+    var container = new CompositionContainer(catalog);
+    ViewModelFactory.Initialize(container);
+    ```
+
+2. Create an instance of a ViewModel with a parameterless constructor:
+    ```csharp
+    var viewModel = ViewModelFactory.CreateViewModel<MyViewModel>();
+    ```
+
+3. Create an instance of a ViewModel with constructor arguments:
+    ```csharp
+    var viewModel = ViewModelFactory.CreateViewModel<MyViewModel>(arg1, arg2);
+    ```
+
+4. Create an instance of a specified type:
+    ```csharp
+    var viewModel = ViewModelFactory.CreateViewModel(typeof(MyViewModel));
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using Microsoft.Extensions.Logging;
+
+public class MyViewModel
+{
+    [Import]
+    public IService MyService { get; set; }
+
+    public MyViewModel()
+    {
+        // Default constructor
+    }
+
+    public MyViewModel(IService service)
+    {
+        MyService = service;
+    }
+}
+
+// Setup MEF
+var catalog = new AggregateCatalog();
+catalog.Catalogs.Add(new AssemblyCatalog(typeof(MyViewModel).Assembly));
+var container = new CompositionContainer(catalog);
+ViewModelFactory.Initialize(container);
+
+// Create an instance of MyViewModel with a parameterless constructor
+var viewModel1 = ViewModelFactory.CreateViewModel<MyViewModel>();
+
+// Create an instance of MyViewModel with constructor arguments
+var viewModel2 = ViewModelFactory.CreateViewModel<MyViewModel>(new ServiceImplementation());
+
+// Create an instance of a specified type
+var viewModel3 = ViewModelFactory.CreateViewModel(typeof(MyViewModel));
+```
+
+This setup allows you to create and use ViewModels with dependency injection using MEF.
