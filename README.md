@@ -7,3 +7,62 @@ Welcome to the `CodingDad.NET.Common` class library! This repository contains a 
 The `CodingDad.NET.Common` library is a versatile and comprehensive set of components built to support a wide range of .NET applications. Whether you're developing web applications, desktop applications, or services, this library offers essential utilities to simplify your development process.
 
 
+## Behaviors
+
+### BehaviorAttacher
+
+The `BehaviorAttacher` class is a static helper class designed to dynamically attach behaviors to WPF `UIElement` controls using attached properties. This is particularly useful for scenarios where you want to declaratively add behaviors to your UI elements in XAML without having to explicitly define them in the code-behind.
+
+#### Properties
+
+- `AttachBehaviorsProperty`: An attached property of type `bool` used to trigger the attachment of behaviors.
+- `BehaviorTypesProperty`: An attached property of type `string` that specifies a comma-separated list of behavior types to attach to the target element.
+
+#### Methods
+
+- `GetBehaviorTypes(DependencyObject element)`: Retrieves the value of the `BehaviorTypesProperty` attached property.
+- `SetAttachBehaviors(DependencyObject element, bool value)`: Sets the value of the `AttachBehaviorsProperty` attached property.
+- `SetBehaviorTypes(DependencyObject element, string value)`: Sets the value of the `BehaviorTypesProperty` attached property.
+
+#### Private Methods
+
+- `FindExistingBehavior(BehaviorCollection behaviors, Type behaviorType)`: Searches for an existing behavior of the specified type within a given `BehaviorCollection`.
+- `OnAttachBehaviorsChanged(DependencyObject element, DependencyPropertyChangedEventArgs e)`: Callback method that gets invoked when the attached properties change. It parses the behavior types, creates instances of the specified behaviors, and attaches them to the target element.
+
+### Usage
+
+To use the `BehaviorAttacher` class in your XAML, follow these steps:
+
+1. Include the necessary namespaces:
+    ```xml
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:YourNamespace"
+    ```
+
+2. Attach the behaviors to your `UIElement` using the attached properties:
+    ```xml
+    <Button Content="Click Me"
+            local:BehaviorAttacher.AttachBehaviors="True"
+            local:BehaviorAttacher.BehaviorTypes="NamespaceOfBehavior1.Behavior1, NamespaceOfBehavior2.Behavior2" />
+    ```
+
+In this example, replace `NamespaceOfBehavior1.Behavior1` and `NamespaceOfBehavior2.Behavior2` with the fully qualified names of the behaviors you want to attach to the `Button`.
+
+Here's a complete example in context:
+
+```xml
+<Window x:Class="YourNamespace.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:local="clr-namespace:YourNamespace"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Button Content="Click Me"
+                local:BehaviorAttacher.AttachBehaviors="True"
+                local:BehaviorAttacher.BehaviorTypes="NamespaceOfBehavior1.Behavior1, NamespaceOfBehavior2.Behavior2" />
+    </Grid>
+</Window>
+```
+
+This setup allows you to dynamically attach multiple behaviors to UI elements by specifying the behavior types in a comma-separated string. The BehaviorAttacher class will handle the creation and attachment of these behaviors at runtime.
