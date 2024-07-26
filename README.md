@@ -182,3 +182,82 @@ Here's a complete example in context:
 ```
 
 This setup allows you to bind a command to the window's close event, enabling you to perform custom actions when the window is closed.
+
+##Commands
+### RelayCommand
+
+The `RelayCommand` class is a simple yet powerful implementation of the `ICommand` interface that allows you to delegate command logic using delegates. This class is especially useful for implementing commands in MVVM (Model-View-ViewModel) patterns in WPF, UWP, and other XAML-based applications.
+
+#### Properties
+
+- `CanExecuteChanged`: An event that occurs when changes occur that affect whether or not the command should execute.
+
+#### Methods
+
+- `RelayCommand(Action<object> execute)`: Initializes a new instance of the `RelayCommand` class with an execute delegate.
+- `RelayCommand(Predicate<object?>? canExecute, Action<object> execute)`: Initializes a new instance of the `RelayCommand` class with canExecute and execute delegates.
+- `CanExecute(object? parameter)`: Defines the method that determines whether the command can execute in its current state.
+- `Execute(object parameter)`: Defines the method to be called when the command is invoked.
+
+### Usage
+
+To use the `RelayCommand` class in your application, follow these steps:
+
+1. Create an instance of `RelayCommand` in your ViewModel:
+    ```csharp
+    public class MainViewModel
+    {
+        public ICommand MyCommand { get; }
+
+        public MainViewModel()
+        {
+            MyCommand = new RelayCommand(ExecuteMyCommand, CanExecuteMyCommand);
+        }
+
+        private bool CanExecuteMyCommand(object? parameter)
+        {
+            // Your logic to determine if the command can execute
+            return true;
+        }
+
+        private void ExecuteMyCommand(object parameter)
+        {
+            // Your logic to execute the command
+        }
+    }
+    ```
+
+2. Bind the command to a UI element in your XAML:
+    ```xml
+    <Window x:Class="YourNamespace.MainWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            Title="MainWindow" Height="350" Width="525">
+        <Window.DataContext>
+            <local:MainViewModel />
+        </Window.DataContext>
+        <Grid>
+            <Button Content="Click Me" Command="{Binding MyCommand}" />
+        </Grid>
+    </Window>
+    ```
+
+In this example, replace `YourNamespace` with the appropriate namespace for your project. The `MyCommand` property is bound to the `RelayCommand` in your ViewModel, and the `Button` in the XAML will execute the command when clicked.
+
+Here's a complete example in context:
+
+```xml
+<Window x:Class="YourNamespace.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Button Content="Click Me" Command="{Binding MyCommand}" />
+    </Grid>
+</Window>
+```
+
+This setup allows you to easily bind commands to UI elements and define the command logic in your ViewModel.
