@@ -57,6 +57,11 @@ The `CodingDad.NET.Common` library is a versatile and comprehensive set of compo
     - [Methods](#methods-9)
     - [Usage](#usage-9)
     - [Example](#example-2)
+- [InputOutput](#inputoutput)
+  - [CursorHelper](#cursorhelper)
+    - [Methods](#methods-10)
+    - [Usage](#usage-10)
+    - [Example](#example)
 
 ## Behaviors
 
@@ -781,3 +786,65 @@ var viewModel3 = ViewModelFactory.CreateViewModel(typeof(MyViewModel));
 ```
 
 This setup allows you to create and use ViewModels with dependency injection using MEF.
+
+## InputOutput
+
+### CursorHelper
+
+The `CursorHelper` class provides utility methods for creating custom cursors in WPF applications. It includes methods to create cursors from strings and UI elements, allowing for more interactive and visually appealing drag-and-drop operations.
+
+#### Methods
+
+- `CreateStringCursor(string cursorText, double pixelPerDip)`: Creates a cursor containing a given string.
+- `CreateUIElementCursor(UIElement element)`: Creates a cursor containing an image that represents the given UI element.
+
+### Usage
+
+To use the `CursorHelper` class, follow these steps:
+
+1. Create a cursor from a string:
+    ```csharp
+    double dpi = VisualTreeHelper.GetDpi(this).PixelsPerDip;
+    Cursor stringCursor = CursorHelper.CreateStringCursor("Drag Me", dpi);
+    ```
+
+2. Create a cursor from a UI element:
+    ```csharp
+    UIElement element = myUIElement;
+    Cursor elementCursor = CursorHelper.CreateUIElementCursor(element);
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+
+        double dpi = VisualTreeHelper.GetDpi(this).PixelsPerDip;
+
+        // Create a cursor from a string
+        Cursor stringCursor = CursorHelper.CreateStringCursor("Drag Me", dpi);
+
+        // Create a cursor from a UI element
+        Button button = new Button { Content = "Drag Me" };
+        Cursor elementCursor = CursorHelper.CreateUIElementCursor(button);
+
+        // Set the cursor to the window (for demonstration purposes)
+        this.Cursor = stringCursor;
+
+        // Alternatively, set the cursor to an element
+        myUIElement.Cursor = elementCursor;
+    }
+}
+```
+
+This setup allows you to create and use custom cursors in your WPF applications, enhancing the user experience for drag-and-drop operations.

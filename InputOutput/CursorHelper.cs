@@ -3,7 +3,6 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Runtime.Versioning;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -15,7 +14,9 @@ using Point = System.Windows.Point;
 
 namespace CodingDad.Common.InputOutput
 {
-    //From https://wpf.2000things.com/tag/drag-and-drop/
+    /// <summary>
+    /// Provides utility methods for creating custom cursors in WPF applications.
+    /// </summary>
     public class CursorHelper
     {
         /// <summary>
@@ -26,7 +27,7 @@ namespace CodingDad.Common.InputOutput
         /// <returns>A formatted cursor containing the given string.</returns>
         public static Cursor CreateStringCursor (string cursorText, double pixelPerDip)
         {
-            //Text to render
+            // Text to render
             FormattedText fmtText = new(
                 cursorText,
                 new CultureInfo("en-us"),
@@ -36,26 +37,26 @@ namespace CodingDad.Common.InputOutput
                     FontStyles.Normal,
                     FontWeights.Normal,
                     new FontStretch()),
-                12.0,  //FontSize
+                12.0,  // FontSize
                 Brushes.Black,
                 pixelPerDip);
 
-            //The Visual to use as the source of the RenderTargetBitmap.
+            // The Visual to use as the source of the RenderTargetBitmap.
             DrawingVisual drawingVisual = new();
             DrawingContext drawingContext = drawingVisual.RenderOpen();
             drawingContext.DrawText(fmtText, new Point());
             drawingContext.Close();
 
-            //The BitmapSource that is rendered with a Visual.
+            // The BitmapSource that is rendered with a Visual.
             RenderTargetBitmap rtb = new(
                 (int)drawingVisual.ContentBounds.Width,
                 (int)drawingVisual.ContentBounds.Height,
-                96,   //dpiX
-                96,   //dpiY
+                96,   // dpiX
+                96,   // dpiY
                 PixelFormats.Pbgra32);
             rtb.Render(drawingVisual);
 
-            //Encoding the RenderBitmapTarget into a bitmap (as PNG)
+            // Encoding the RenderBitmapTarget into a bitmap (as PNG)
             PngBitmapEncoder encoder = new();
             encoder.Frames.Add(BitmapFrame.Create(rtb));
 
@@ -66,7 +67,7 @@ namespace CodingDad.Common.InputOutput
         }
 
         /// <summary>
-        /// Creates a cursor containing an image that represent the element being dragged.
+        /// Creates a cursor containing an image that represents the element being dragged.
         /// </summary>
         /// <param name="element">The UIElement to create an image representation in the cursor of.</param>
         /// <returns>A cursor containing an image of the given element.</returns>
@@ -78,8 +79,8 @@ namespace CodingDad.Common.InputOutput
             RenderTargetBitmap rtb = new(
                 (int)element.DesiredSize.Width,
                 (int)element.DesiredSize.Height,
-                96,   //dpiX
-                96,   //dpiY
+                96,   // dpiX
+                96,   // dpiY
                 PixelFormats.Pbgra32);
 
             rtb.Render(element);
