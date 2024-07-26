@@ -124,3 +124,61 @@ Here's a complete example in context:
 ```
 
 This setup allows you to dynamically attach multiple behaviors to UI elements by specifying the behavior types in a comma-separated string. The MefSafeBehaviorAttacher class will handle the creation and attachment of these behaviors at runtime, leveraging MEF for dependency injection.
+
+### WindowCloseBehavior
+
+The `WindowCloseBehavior` class is a static helper class designed to bind a command to the closing of a WPF window. This allows you to perform custom actions when a window is closed, such as saving state or cleaning up resources.
+
+#### Properties
+
+- `CloseCommandProperty`: An attached property of type `ICommand` used to bind a command to the window's close event.
+
+#### Methods
+
+- `GetCloseCommand(DependencyObject obj)`: Retrieves the value of the `CloseCommandProperty` attached property.
+- `SetCloseCommand(DependencyObject obj, ICommand value)`: Sets the value of the `CloseCommandProperty` attached property.
+
+#### Private Methods
+
+- `OnCloseCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)`: Callback method that gets invoked when the `CloseCommandProperty` changes. It attaches or detaches the window's Closed event handler based on the property value.
+- `OnWindowClosed(object sender, EventArgs e)`: Handles the Closed event of the window and executes the bound command.
+
+### Usage
+
+To use the `WindowCloseBehavior` class in your XAML, follow these steps:
+
+1. Include the necessary namespace:
+    ```xml
+    xmlns:local="clr-namespace:YourNamespace"
+    ```
+
+2. Bind the `CloseCommand` property to a command in your view model:
+    ```xml
+    <Window x:Class="YourNamespace.MainWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:local="clr-namespace:YourNamespace"
+            Title="MainWindow" Height="350" Width="525"
+            local:WindowCloseBehavior.CloseCommand="{Binding CloseCommand}">
+        <!-- Window content -->
+    </Window>
+    ```
+
+In this example, replace `YourNamespace` with the appropriate namespace for your project. The `CloseCommand` property is bound to a command in your view model that will be executed when the window is closed.
+
+Here's a complete example in context:
+
+```xml
+<Window x:Class="YourNamespace.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:YourNamespace"
+        Title="MainWindow" Height="350" Width="525"
+        local:WindowCloseBehavior.CloseCommand="{Binding CloseCommand}">
+    <Grid>
+        <!-- Window content -->
+    </Grid>
+</Window>
+```
+
+This setup allows you to bind a command to the window's close event, enabling you to perform custom actions when the window is closed.
