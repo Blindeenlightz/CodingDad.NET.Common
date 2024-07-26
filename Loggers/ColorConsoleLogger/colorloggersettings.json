@@ -1,0 +1,11 @@
+{
+  "EventId": 0,
+  "LogLevelToColorMap": {
+    "Trace": "Gray",
+    "Debug": "DarkYellow",
+    "Information": "Cyan",
+    "Warning": "Yellow",
+    "Error": "Red",
+    "Critical": "DarkRed"
+  }
+}

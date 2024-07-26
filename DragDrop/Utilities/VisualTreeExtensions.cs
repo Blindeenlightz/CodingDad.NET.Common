@@ -19,7 +19,7 @@ namespace CodingDad.DragAndDrop
             return VisualTreeDescendantBoundsHelper.GetVisibleDescendantBounds(visual);
         }
 
-        public static T GetVisualAncestor<T> (this DependencyObject d)
+        public static T? GetVisualAncestor<T> (this DependencyObject d)
                     where T : class
         {
             var item = VisualTreeHelper.GetParent(d.FindVisualTreeRoot());
@@ -41,7 +41,7 @@ namespace CodingDad.DragAndDrop
         /// <summary>
         /// find the visual ancestor item by type
         /// </summary>
-        public static DependencyObject GetVisualAncestor (this DependencyObject d, Type itemSearchType, ItemsControl itemsControl, Type itemContainerSearchType)
+        public static DependencyObject? GetVisualAncestor (this DependencyObject d, Type itemSearchType, ItemsControl itemsControl, Type itemContainerSearchType)
         {
             if (itemsControl == null) throw new ArgumentNullException(nameof(itemsControl));
             if (itemContainerSearchType == null) throw new ArgumentNullException(nameof(itemContainerSearchType));
@@ -75,7 +75,7 @@ namespace CodingDad.DragAndDrop
         /// <summary>
         /// find the visual ancestor by type and go through the visual tree until the given itemsControl will be found
         /// </summary>
-        public static DependencyObject GetVisualAncestor (this DependencyObject d, Type itemSearchType, ItemsControl itemsControl)
+        public static DependencyObject? GetVisualAncestor (this DependencyObject d, Type itemSearchType, ItemsControl itemsControl)
         {
             if (itemsControl == null) throw new ArgumentNullException(nameof(itemsControl));
 
@@ -103,13 +103,13 @@ namespace CodingDad.DragAndDrop
             return lastFoundItemByType;
         }
 
-        public static T GetVisualDescendent<T> (this DependencyObject d)
+        public static T? GetVisualDescendent<T> (this DependencyObject d)
                     where T : DependencyObject
         {
             return d.GetVisualDescendents<T>(null).FirstOrDefault();
         }
 
-        public static T GetVisualDescendent<T> (this DependencyObject d, string childName)
+        public static T? GetVisualDescendent<T> (this DependencyObject d, string childName)
                     where T : DependencyObject
         {
             return d.GetVisualDescendents<T>(childName).FirstOrDefault();
@@ -121,7 +121,7 @@ namespace CodingDad.DragAndDrop
             return d.GetVisualDescendents<T>(null);
         }
 
-        public static IEnumerable<T> GetVisualDescendents<T> (this DependencyObject d, string childName)
+        public static IEnumerable<T> GetVisualDescendents<T> (this DependencyObject d, string? childName)
                     where T : DependencyObject
         {
             var childCount = VisualTreeHelper.GetChildrenCount(d);
@@ -153,7 +153,7 @@ namespace CodingDad.DragAndDrop
         /// </summary>
         /// <param name="element">The start element.</param>
         /// <returns>The first element which is a drop target.</returns>
-        public static UIElement TryGetNextAncestorDropTargetElement (this UIElement element)
+        public static UIElement? TryGetNextAncestorDropTargetElement (this UIElement element)
         {
             if (element == null)
             {

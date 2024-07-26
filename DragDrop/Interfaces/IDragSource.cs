@@ -14,7 +14,7 @@ namespace CodingDad.DragAndDrop
         /// e.g. check for a UIElement inside a list view item, that should not start a drag and drop operation
         /// </summary>
         /// <param name="dragInfo">Object which contains several drag information.</param>
-        /// <returns>True if the drag and drop operation is allowed.</returns>
+        /// <returns><c>True</c> if the drag and drop operation is allowed.</returns>
         bool CanStartDrag (IDragInfo dragInfo);
 
         /// <summary>

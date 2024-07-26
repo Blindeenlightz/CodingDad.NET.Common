@@ -31,9 +31,9 @@ namespace CodingDad.DragAndDrop
         /// <param name="element">visual source to capture screen of</param>
         /// <param name="visualSourceFlowDirection">Flowdirection of visual source</param>
         /// <returns></returns>
-        public static DataTemplate GetCaptureScreenDataTemplate (this UIElement element, FlowDirection visualSourceFlowDirection)
+        public static DataTemplate? GetCaptureScreenDataTemplate (this UIElement element, FlowDirection visualSourceFlowDirection)
         {
-            DataTemplate template = null;
+            DataTemplate? template = null;
             var bs = CaptureScreen(element, visualSourceFlowDirection);
             if (bs != null)
             {
@@ -83,7 +83,7 @@ namespace CodingDad.DragAndDrop
 
         // Helper to generate the image - I grabbed this off Google
         // somewhere. -- Chris Bordeman cbordeman@gmail.com
-        private static BitmapSource CaptureScreen (Visual target, FlowDirection flowDirection)
+        private static BitmapSource? CaptureScreen (Visual target, FlowDirection flowDirection)
         {
             if (target == null)
             {

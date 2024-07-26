@@ -96,7 +96,7 @@ namespace CodingDad.DragAndDrop
             return IsNotPartOfSender(sender, e.OriginalSource, e.GetTouchPoint((IInputElement)e.OriginalSource).Position);
         }
 
-        private static T GetHitTestElement4Type<T> (object sender, Point elementPosition)
+        private static T? GetHitTestElement4Type<T> (object sender, Point elementPosition)
                             where T : UIElement
         {
             if (sender is not Visual visual)

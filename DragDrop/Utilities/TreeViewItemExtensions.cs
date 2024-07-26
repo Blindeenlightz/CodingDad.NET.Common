@@ -13,7 +13,7 @@ namespace CodingDad.DragAndDrop
         /// If there is no PART_Header it will return null.
         /// </summary>
         /// <param name="item">The TreeViewItem.</param>
-        public static FrameworkElement GetHeaderControl (this TreeViewItem item)
+        public static FrameworkElement? GetHeaderControl (this TreeViewItem item)
         {
             return item?.Template?.FindName("PART_Header", item) as FrameworkElement;
         }

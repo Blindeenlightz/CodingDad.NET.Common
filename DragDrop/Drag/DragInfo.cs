@@ -52,7 +52,7 @@ namespace CodingDad.DragAndDrop
                 SourceGroup = itemsControl.FindGroup(DragStartPosition);
                 VisualSourceFlowDirection = itemsControl.GetItemsPanelFlowDirection();
 
-                UIElement item = null;
+                UIElement? item = null;
                 if (sourceElement != null)
                 {
                     item = itemsControl.GetItemContainer(sourceElement);

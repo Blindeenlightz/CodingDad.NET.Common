@@ -86,7 +86,7 @@ namespace CodingDad.DragAndDrop
             }
         }
 
-        public static CollectionViewGroup FindGroup (this ItemsControl itemsControl, Point position)
+        public static CollectionViewGroup? FindGroup (this ItemsControl itemsControl, Point position)
         {
             if (itemsControl.Items.Groups == null || itemsControl.Items.Groups.Count == 0)
             {
@@ -129,7 +129,7 @@ namespace CodingDad.DragAndDrop
             return null;
         }
 
-        public static UIElement GetItemContainer (this ItemsControl itemsControl, DependencyObject child)
+        public static UIElement? GetItemContainer (this ItemsControl itemsControl, DependencyObject child)
         {
             bool isItemContainer;
             var itemType = itemsControl.GetItemContainerType(out isItemContainer);
@@ -144,7 +144,7 @@ namespace CodingDad.DragAndDrop
             return null;
         }
 
-        public static UIElement GetItemContainerAt (this ItemsControl itemsControl, Point position)
+        public static UIElement? GetItemContainerAt (this ItemsControl itemsControl, Point position)
         {
             var inputElement = itemsControl.InputHitTest(position);
 
@@ -164,7 +164,7 @@ namespace CodingDad.DragAndDrop
             return null;
         }
 
-        public static UIElement GetItemContainerAt (this ItemsControl itemsControl, Point position, Orientation searchDirection)
+        public static UIElement? GetItemContainerAt (this ItemsControl itemsControl, Point position, Orientation searchDirection)
         {
             bool isItemContainer;
             var itemContainerType = itemsControl.GetItemContainerType(out isItemContainer);
@@ -229,7 +229,7 @@ namespace CodingDad.DragAndDrop
             return GetClosest(itemsControl, hits, position, searchDirection);
         }
 
-        public static Type GetItemContainerType (this ItemsControl itemsControl, out bool isItemContainer)
+        public static Type? GetItemContainerType (this ItemsControl itemsControl, out bool isItemContainer)
         {
             // determines if the itemsControl is not a ListView, ListBox or TreeView
             isItemContainer = false;
@@ -373,7 +373,7 @@ namespace CodingDad.DragAndDrop
             return Orientation.Vertical;
         }
 
-        public static object GetSelectedItem (this ItemsControl itemsControl)
+        public static object? GetSelectedItem (this ItemsControl itemsControl)
         {
             return itemsControl switch
             {
@@ -591,7 +591,7 @@ namespace CodingDad.DragAndDrop
             }
         }
 
-        private static UIElement GetClosest (ItemsControl itemsControl, IEnumerable<DependencyObject> items, Point position, Orientation searchDirection)
+        private static UIElement? GetClosest (ItemsControl itemsControl, IEnumerable<DependencyObject> items, Point position, Orientation searchDirection)
         {
             //Console.WriteLine("GetClosest - {0}", itemsControl.ToString());
 

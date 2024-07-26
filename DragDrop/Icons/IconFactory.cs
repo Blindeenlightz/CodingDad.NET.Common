@@ -101,7 +101,7 @@ namespace CodingDad.DragAndDrop
         /// <returns>The image to be displayed</returns>
         private static BitmapImage GetImage (string iconName, int size)
         {
-            var uri = new Uri($@"pack://application:,,,/CodingDad.DragDrop.DragDrop;component/Icons/{iconName}", UriKind.RelativeOrAbsolute);
+            var uri = new Uri($@"pack://application:,,,/CodingDad.Common;component/DragDrop/Icons/{iconName}", UriKind.RelativeOrAbsolute);
             var icon = new BitmapImage(uri);
             icon.DecodePixelHeight = size;
             icon.DecodePixelWidth = size;

@@ -32,7 +32,7 @@ namespace CodingDad.DragAndDrop
             m_AdornerLayer.Remove(this);
         }
 
-        internal static DropTargetAdorner Create (Type type, UIElement adornedElement, IDropInfo dropInfo)
+        internal static DropTargetAdorner? Create (Type type, UIElement adornedElement, IDropInfo dropInfo)
         {
             if (!typeof(DropTargetAdorner).IsAssignableFrom(type))
             {

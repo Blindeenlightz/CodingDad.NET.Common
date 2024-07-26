@@ -471,9 +471,9 @@ namespace CodingDad.DragAndDrop
                                                           typeof(DragDropMain),
                                                           new PropertyMetadata(default(bool)));
 
-        private static object _clickSupressItem;
+        private static object? _clickSupressItem;
 
-        private static DragInfo _dragInfo;
+        private static DragInfo? _dragInfo;
 
         private static bool _dragInProgress;
 
@@ -503,7 +503,7 @@ namespace CodingDad.DragAndDrop
         /// </summary>
         public static IRootElementFinder DefaultRootElementFinder { get; } = new RootElementFinder();
 
-        private static DragDropEffectPreview DragDropEffectPreview
+        private static DragDropEffectPreview? DragDropEffectPreview
         {
             get => dragDropEffectPreview;
             set
@@ -518,7 +518,7 @@ namespace CodingDad.DragAndDrop
             }
         }
 
-        private static DragDropPreview DragDropPreview
+        private static DragDropPreview? DragDropPreview
         {
             get => dragDropPreview;
             set
@@ -528,7 +528,7 @@ namespace CodingDad.DragAndDrop
             }
         }
 
-        private static DropTargetAdorner DropTargetAdorner
+        private static DropTargetAdorner? DropTargetAdorner
         {
             get => dropTargetAdorner;
             set
@@ -843,9 +843,9 @@ namespace CodingDad.DragAndDrop
         /// <remarks>Gets the <see cref="ScrollViewer"/> that will be used as <see cref="DropInfo.TargetScrollViewer"/>.</remarks>
         /// <returns>DropTargetScrollViewer property value.</returns>
         [AttachedPropertyBrowsableForType(typeof(UIElement))]
-        public static ScrollViewer GetDropTargetScrollViewer (DependencyObject element)
+        public static ScrollViewer? GetDropTargetScrollViewer (DependencyObject element)
         {
-            return (ScrollViewer)element?.GetValue(DropTargetScrollViewerProperty);
+            return element?.GetValue(DropTargetScrollViewerProperty) as ScrollViewer;
         }
 
         /// <summary>Helper for getting <see cref="EffectAdornerTranslationProperty"/> from <paramref name="element"/>.</summary>
@@ -1562,7 +1562,7 @@ namespace CodingDad.DragAndDrop
             element.SetValue(IsDragOverProperty, value);
         }
 
-        internal static ItemsPanelTemplate TryGetDragAdornerItemsPanel (UIElement source, UIElement sender)
+        internal static ItemsPanelTemplate? TryGetDragAdornerItemsPanel (UIElement source, UIElement sender)
         {
             var itemsPanel = source is not null ? GetDragAdornerItemsPanel(source) : null;
             if (itemsPanel is null && sender is not null)
@@ -1573,7 +1573,7 @@ namespace CodingDad.DragAndDrop
             return itemsPanel;
         }
 
-        internal static DataTemplate TryGetDragAdornerMultiItemTemplate (UIElement source, UIElement sender)
+        internal static DataTemplate? TryGetDragAdornerMultiItemTemplate (UIElement source, UIElement sender)
         {
             var template = source is not null ? GetDragAdornerMultiItemTemplate(source) : null;
             if (template is null && sender is not null)
@@ -1584,7 +1584,7 @@ namespace CodingDad.DragAndDrop
             return template;
         }
 
-        internal static DataTemplateSelector TryGetDragAdornerMultiItemTemplateSelector (UIElement source, UIElement sender)
+        internal static DataTemplateSelector? TryGetDragAdornerMultiItemTemplateSelector (UIElement source, UIElement sender)
         {
             var templateSelector = source is not null ? GetDragAdornerMultiItemTemplateSelector(source) : null;
             if (templateSelector is null && sender is not null)
@@ -1595,7 +1595,7 @@ namespace CodingDad.DragAndDrop
             return templateSelector;
         }
 
-        internal static DataTemplate TryGetDragAdornerTemplate (UIElement source, UIElement sender)
+        internal static DataTemplate? TryGetDragAdornerTemplate (UIElement source, UIElement sender)
         {
             var template = source is not null ? GetDragAdornerTemplate(source) : null;
             if (template is null && sender is not null)
@@ -1606,7 +1606,7 @@ namespace CodingDad.DragAndDrop
             return template;
         }
 
-        internal static DataTemplateSelector TryGetDragAdornerTemplateSelector (UIElement source, UIElement sender)
+        internal static DataTemplateSelector? TryGetDragAdornerTemplateSelector (UIElement source, UIElement sender)
         {
             var templateSelector = source is not null ? GetDragAdornerTemplateSelector(source) : null;
             if (templateSelector is null && sender is not null)
@@ -1617,7 +1617,7 @@ namespace CodingDad.DragAndDrop
             return templateSelector;
         }
 
-        internal static IDragPreviewItemsSorter TryGetDragPreviewItemsSorter (IDragInfo dragInfo, UIElement sender)
+        internal static IDragPreviewItemsSorter? TryGetDragPreviewItemsSorter (IDragInfo dragInfo, UIElement sender)
         {
             var itemsSorter = dragInfo?.VisualSource != null ? GetDragPreviewItemsSorter(dragInfo.VisualSource) : null;
             if (itemsSorter is null && sender != null)
@@ -1639,7 +1639,7 @@ namespace CodingDad.DragAndDrop
             return itemsCount < 0 || itemsCount >= int.MaxValue ? 10 : itemsCount;
         }
 
-        internal static ItemsPanelTemplate TryGetDropAdornerItemsPanel (UIElement source, UIElement sender)
+        internal static ItemsPanelTemplate? TryGetDropAdornerItemsPanel (UIElement source, UIElement sender)
         {
             var itemsPanel = source is not null ? GetDropAdornerItemsPanel(source) : null;
             if (itemsPanel is null && sender is not null)
@@ -1650,7 +1650,7 @@ namespace CodingDad.DragAndDrop
             return itemsPanel;
         }
 
-        internal static DataTemplate TryGetDropAdornerMultiItemTemplate (UIElement source, UIElement sender)
+        internal static DataTemplate? TryGetDropAdornerMultiItemTemplate (UIElement source, UIElement sender)
         {
             var template = source is not null ? GetDropAdornerMultiItemTemplate(source) : null;
             if (template is null && sender is not null)
@@ -1661,7 +1661,7 @@ namespace CodingDad.DragAndDrop
             return template;
         }
 
-        internal static DataTemplateSelector TryGetDropAdornerMultiItemTemplateSelector (UIElement source, UIElement sender)
+        internal static DataTemplateSelector? TryGetDropAdornerMultiItemTemplateSelector (UIElement source, UIElement sender)
         {
             var templateSelector = source is not null ? GetDropAdornerMultiItemTemplateSelector(source) : null;
             if (templateSelector is null && sender is not null)
@@ -1672,7 +1672,7 @@ namespace CodingDad.DragAndDrop
             return templateSelector;
         }
 
-        internal static DataTemplate TryGetDropAdornerTemplate (UIElement source, UIElement sender)
+        internal static DataTemplate? TryGetDropAdornerTemplate (UIElement source, UIElement sender)
         {
             var template = source is not null ? GetDropAdornerTemplate(source) : null;
             if (template is null && sender is not null)
@@ -1683,7 +1683,7 @@ namespace CodingDad.DragAndDrop
             return template;
         }
 
-        internal static DataTemplateSelector TryGetDropAdornerTemplateSelector (UIElement source, UIElement sender)
+        internal static DataTemplateSelector? TryGetDropAdornerTemplateSelector (UIElement source, UIElement sender)
         {
             var templateSelector = source is not null ? GetDropAdornerTemplateSelector(source) : null;
             if (templateSelector is null && sender is not null)
@@ -1694,7 +1694,7 @@ namespace CodingDad.DragAndDrop
             return templateSelector;
         }
 
-        private static DataTemplate CreateDefaultEffectDataTemplate (UIElement target, BitmapImage effectIcon, string effectText, string destinationText)
+        private static DataTemplate? CreateDefaultEffectDataTemplate (UIElement target, BitmapImage effectIcon, string effectText, string destinationText)
         {
             if (!GetUseDefaultEffectDataTemplate(target))
             {
@@ -2311,7 +2311,7 @@ namespace CodingDad.DragAndDrop
             DropTargetOnDrop(sender, e, EventType.Tunneled);
         }
 
-        private static DragDropEffectPreview GetDragDropEffectPreview (IDropInfo dropInfo, UIElement sender)
+        private static DragDropEffectPreview? GetDragDropEffectPreview (IDropInfo dropInfo, UIElement sender)
         {
             var dragInfo = dropInfo.DragInfo;
             var template = GetDragDropEffectTemplate(dragInfo.VisualSource, dropInfo);
@@ -2333,7 +2333,7 @@ namespace CodingDad.DragAndDrop
             return null;
         }
 
-        private static DataTemplate GetDragDropEffectTemplate (UIElement target, IDropInfo dropInfo)
+        private static DataTemplate? GetDragDropEffectTemplate (UIElement target, IDropInfo dropInfo)
         {
             if (target is null)
             {
@@ -2355,7 +2355,7 @@ namespace CodingDad.DragAndDrop
             };
         }
 
-        private static DragDropPreview GetDragDropPreview (IDragInfo dragInfo, UIElement visualTarget, UIElement sender)
+        private static DragDropPreview? GetDragDropPreview (IDragInfo dragInfo, UIElement? visualTarget, UIElement sender)
         {
             var visualSource = dragInfo?.VisualSource;
             if (visualSource is null)
@@ -2604,7 +2604,7 @@ namespace CodingDad.DragAndDrop
         /// </summary>
         /// <param name="sender">the sender from an event, e.g. drag over</param>
         /// <returns></returns>
-        private static IDragInfoBuilder TryGetDragInfoBuilder (DependencyObject sender)
+        private static IDragInfoBuilder? TryGetDragInfoBuilder (DependencyObject sender)
         {
             return sender != null ? GetDragInfoBuilder(sender) : null;
         }
@@ -2627,12 +2627,12 @@ namespace CodingDad.DragAndDrop
         /// </summary>
         /// <param name="sender">the sender from an event, e.g. drag over</param>
         /// <returns></returns>
-        private static IDropInfoBuilder TryGetDropInfoBuilder (DependencyObject sender)
+        private static IDropInfoBuilder? TryGetDropInfoBuilder (DependencyObject sender)
         {
             return sender != null ? GetDropInfoBuilder(sender) : null;
         }
 
-        private static IDropTargetItemsSorter TryGetDropTargetItemsSorter (IDropInfo dropInfo, UIElement sender)
+        private static IDropTargetItemsSorter? TryGetDropTargetItemsSorter (IDropInfo dropInfo, UIElement sender)
         {
             var itemsSorter = dropInfo?.VisualTarget != null ? GetDropTargetItemsSorter(dropInfo.VisualTarget) : null;
             if (itemsSorter is null && sender != null)

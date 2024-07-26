@@ -281,8 +281,8 @@ namespace CodingDad.DragAndDrop
                 }
 
                 // Source element has a drag context constraint, we need to check the target property matches.
-                var sourceContext = DragAndDrop.GetDragDropContext(DragInfo.VisualSource);
-                var targetContext = DragAndDrop.GetDragDropContext(VisualTarget);
+                var sourceContext = DragDropMain.GetDragDropContext(DragInfo.VisualSource);
+                var targetContext = DragDropMain.GetDragDropContext(VisualTarget);
 
                 return string.Equals(sourceContext, targetContext)
                        || string.IsNullOrEmpty(targetContext);

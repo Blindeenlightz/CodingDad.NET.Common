@@ -15,7 +15,7 @@ namespace CodingDad.DragAndDrop
         private static FieldInfo ClipFieldFieldInfo { get; } = typeof(Visual).GetField("ClipField", BindingFlags.Static | BindingFlags.NonPublic);
         private static FieldInfo EffectFieldFieldInfo { get; } = typeof(Visual).GetField("EffectField", BindingFlags.Static | BindingFlags.NonPublic);
         private static PropertyInfo EffectMappingPropertyInfo { get; } = typeof(Effect).GetProperty("EffectMapping", BindingFlags.Instance | BindingFlags.NonPublic);
-        private static Func<Type, MethodInfo> GetValueMethodInfo { get; } = t => UncommonFieldType.MakeGenericType(t).GetMethod("GetValue", BindingFlags.Instance | BindingFlags.Public);
+        private static Func<Type, MethodInfo?> GetValueMethodInfo { get; } = t => UncommonFieldType?.MakeGenericType(t).GetMethod("GetValue", BindingFlags.Instance | BindingFlags.Public);
         private static MethodInfo IsEmptyRenderBoundsMethodInfo { get; } = typeof(Visual).GetMethod("IsEmptyRenderBounds", BindingFlags.Instance | BindingFlags.NonPublic);
         private static PropertyInfo IsIdentityPropertyInfo { get; } = typeof(Transform).GetProperty("IsIdentity", BindingFlags.Instance | BindingFlags.NonPublic);
         private static FieldInfo OffsetFieldInfo { get; } = typeof(Visual).GetField("_offset", BindingFlags.Instance | BindingFlags.NonPublic);
