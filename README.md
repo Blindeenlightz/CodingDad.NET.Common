@@ -261,3 +261,66 @@ Here's a complete example in context:
 ```
 
 This setup allows you to easily bind commands to UI elements and define the command logic in your ViewModel.
+
+##CustomControls
+
+### ResizableGridControl
+
+The `ResizableGridControl` class is a custom WPF `Grid` control that supports dynamic row and column resizing. This control allows users to resize rows and columns by dragging the edges with the mouse, providing a more flexible and interactive layout experience.
+
+#### Methods
+
+- `AddColumn()`: Adds a new column to the grid.
+- `AddRow()`: Adds a new row to the grid.
+- `RemoveColumn(int index)`: Removes a column at the specified index from the grid.
+- `RemoveRow(int index)`: Removes a row at the specified index from the grid.
+
+#### Event Handlers
+
+- `GridControl_MouseDown(object sender, MouseButtonEventArgs e)`: Handles the MouseDown event, initiating row or column resizing.
+- `GridControl_MouseLeave(object sender, MouseEventArgs e)`: Handles the MouseLeave event, cancelling row or column resizing.
+- `GridControl_MouseMove(object sender, MouseEventArgs e)`: Handles the MouseMove event, performing row or column resizing.
+- `GridControl_MouseUp(object sender, MouseButtonEventArgs e)`: Handles the MouseUp event, finalizing row or column resizing.
+
+### Usage
+
+To use the `ResizableGridControl` in your application, follow these steps:
+
+1. Include the necessary namespace:
+    ```xml
+    xmlns:local="clr-namespace:YourNamespace"
+    ```
+
+2. Use the `ResizableGridControl` in your XAML:
+    ```xml
+    <local:ResizableGridControl>
+        <!-- Add your content here -->
+    </local:ResizableGridControl>
+    ```
+
+Here's a complete example in context:
+
+```xml
+<Window x:Class="YourNamespace.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:YourNamespace"
+        Title="MainWindow" Height="350" Width="525">
+    <local:ResizableGridControl>
+        <local:ResizableGridControl.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </local:ResizableGridControl.ColumnDefinitions>
+        <local:ResizableGridControl.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </local:ResizableGridControl.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Cell 0,0" />
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Cell 0,1" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Cell 1,0" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Cell 1,1" />
+    </local:ResizableGridControl>
+</Window>
+```
+
+This setup allows you to use the ResizableGridControl to create grids with dynamically resizable rows and columns. Users can resize the rows and columns by dragging the edges with the mouse.
