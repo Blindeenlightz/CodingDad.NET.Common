@@ -6,6 +6,48 @@ Welcome to the `CodingDad.NET.Common` class library! This repository contains a 
 
 The `CodingDad.NET.Common` library is a versatile and comprehensive set of components built to support a wide range of .NET applications. Whether you're developing web applications, desktop applications, or services, this library offers essential utilities to simplify your development process.
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Behaviors](#behaviors)
+  - [BehaviorAttacher](#behaviorattacher)
+    - [Properties](#properties)
+    - [Methods](#methods)
+    - [Private Methods](#private-methods)
+    - [Usage](#usage)
+  - [MefSafeBehaviorAttacher](#mefsafebehaviorattacher)
+    - [Properties](#properties-1)
+    - [Methods](#methods-1)
+    - [Private Methods](#private-methods-1)
+    - [Usage](#usage-1)
+  - [WindowCloseBehavior](#windowclosebehavior)
+    - [Properties](#properties-2)
+    - [Methods](#methods-2)
+    - [Private Methods](#private-methods-2)
+    - [Usage](#usage-2)
+- [Commands](#commands)
+  - [RelayCommand](#relaycommand)
+    - [Properties](#properties-3)
+    - [Methods](#methods-3)
+    - [Usage](#usage-3)
+- [CustomControls](#customcontrols)
+  - [ResizableGridControl](#resizablegridcontrol)
+    - [Methods](#methods-4)
+    - [Event Handlers](#event-handlers)
+    - [Usage](#usage-4)
+- [DbHelpers](#dbhelpers)
+  - [MongoDbHelper](#mongodbhelper)
+    - [Methods](#methods-5)
+    - [Usage](#usage-5)
+    - [Example](#example)
+  - [SqlServerHelper](#sqlserverhelper)
+    - [Methods](#methods-6)
+    - [Usage](#usage-6)
+    - [Example](#example-1)
+  - [SQLiteHelper](#sqlitehelper)
+    - [Methods](#methods-7)
+    - [Usage](#usage-7)
+    - [Example](#example-2)
 
 ## Behaviors
 
