@@ -324,3 +324,250 @@ Here's a complete example in context:
 ```
 
 This setup allows you to use the ResizableGridControl to create grids with dynamically resizable rows and columns. Users can resize the rows and columns by dragging the edges with the mouse.
+
+##DbHelpers
+### MongoDbHelper
+
+The `MongoDbHelper<T>` class is a general-purpose interface for interacting with a MongoDB database. This class provides methods to create, read, update, and delete documents in a MongoDB collection, and it uses the `LoggerProvider` for logging operations.
+
+#### Methods
+
+- `MongoDbHelper(string connectionString, string databaseName, string collectionName)`: Initializes a new instance of the `MongoDbHelper<T>` class.
+- `CreateUserAsync(string email, string username, string password)`: Asynchronously creates a new user in the MongoDB database.
+- `DeleteAsync(ObjectId id)`: Deletes a document from the collection by its ObjectId.
+- `GetAllAsync()`: Retrieves all documents from the collection.
+- `GetByIdAsync(ObjectId id)`: Retrieves a document by its ObjectId.
+- `InsertAsync(T document)`: Inserts a document into the collection.
+- `UpdateAsync(ObjectId id, T document)`: Updates a document in the collection by its ObjectId.
+- `VerifyUserAsync(string email, string password)`: Asynchronously verifies if a user with the given email and password exists in the MongoDB database.
+
+### Usage
+
+To use the `MongoDbHelper<T>` class in your application, follow these steps:
+
+1. Create an instance of `MongoDbHelper<T>` in your code:
+    ```csharp
+    var mongoDbHelper = new MongoDbHelper<MyDocumentClass>("your_connection_string", "your_database_name", "your_collection_name");
+    ```
+
+2. Use the available methods to interact with the MongoDB database. For example, to insert a document:
+    ```csharp
+    await mongoDbHelper.InsertAsync(new MyDocumentClass { Name = "John", Age = 30 });
+    ```
+
+3. To retrieve all documents from the collection:
+    ```csharp
+    var allDocuments = await mongoDbHelper.GetAllAsync();
+    ```
+
+4. To verify a user:
+    ```csharp
+    bool isVerified = await mongoDbHelper.VerifyUserAsync("user@example.com", "password");
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+public class MyDocumentClass
+{
+    public ObjectId Id { get; set; }
+    public string Name { get; set; }
+    public int Age { get; set; }
+}
+
+var mongoDbHelper = new MongoDbHelper<MyDocumentClass>("your_connection_string", "your_database_name", "your_collection_name");
+
+await mongoDbHelper.InsertAsync(new MyDocumentClass { Name = "John", Age = 30 });
+
+var allDocuments = await mongoDbHelper.GetAllAsync();
+
+bool isVerified = await mongoDbHelper.VerifyUserAsync("user@example.com", "password");
+```
+
+This setup allows you to easily interact with a MongoDB database, performing CRUD operations and logging activities using the LoggerProvider.
+
+### SqlServerHelper
+
+The `SqlServerHelper` class is a general-purpose interface for interacting with a SQL Server database. This class provides methods to create, read, update, and delete records in a SQL Server database, and it uses the `LoggerProvider` for logging operations.
+
+#### Methods
+
+- `SqlServerHelper(string connectionString)`: Initializes a new instance of the `SqlServerHelper` class.
+- `CreateUserAsync(string email, string username, string password)`: Asynchronously creates a new user in the SQL Server database.
+- `ExecuteNonQueryAsync(string commandText, SqlParameter[] parameters = null)`: Executes a non-query SQL command.
+- `ExecuteQueryAsync(string queryText, SqlParameter[] parameters = null)`: Executes a SQL query and returns the result as a DataTable.
+- `VerifyUser(string email, string password)`: Verifies if a user with the given email and password exists in the database.
+- `VerifyUserAsync(string email, string password)`: Asynchronously verifies if a user with the given email and password exists in the database.
+
+### Usage
+
+To use the `SqlServerHelper` class in your application, follow these steps:
+
+1. Create an instance of `SqlServerHelper` in your code:
+    ```csharp
+    var sqlServerHelper = new SqlServerHelper("your_connection_string");
+    ```
+
+2. Use the available methods to interact with the SQL Server database. For example, to insert a user:
+    ```csharp
+    await sqlServerHelper.CreateUserAsync("user@example.com", "username", "password");
+    ```
+
+3. To execute a non-query command:
+    ```csharp
+    string commandText = "INSERT INTO Users (Name, Age) VALUES (@Name, @Age)";
+    SqlParameter[] parameters = {
+        new SqlParameter("@Name", "John"),
+        new SqlParameter("@Age", 30)
+    };
+    await sqlServerHelper.ExecuteNonQueryAsync(commandText, parameters);
+    ```
+
+4. To execute a query and get results as a DataTable:
+    ```csharp
+    string queryText = "SELECT * FROM Users WHERE Age > @Age";
+    SqlParameter[] parameters = {
+        new SqlParameter("@Age", 25)
+    };
+    DataTable result = await sqlServerHelper.ExecuteQueryAsync(queryText, parameters);
+    ```
+
+5. To verify a user:
+    ```csharp
+    bool isVerified = sqlServerHelper.VerifyUser("user@example.com", "password");
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+public class User
+{
+    public string Email { get; set; }
+    public string Username { get; set; }
+    public string Password { get; set; }
+}
+
+var sqlServerHelper = new SqlServerHelper("your_connection_string");
+
+await sqlServerHelper.CreateUserAsync("user@example.com", "username", "password");
+
+string commandText = "INSERT INTO Users (Name, Age) VALUES (@Name, @Age)";
+SqlParameter[] parameters = {
+    new SqlParameter("@Name", "John"),
+    new SqlParameter("@Age", 30)
+};
+await sqlServerHelper.ExecuteNonQueryAsync(commandText, parameters);
+
+string queryText = "SELECT * FROM Users WHERE Age > @Age";
+parameters = new SqlParameter[] {
+    new SqlParameter("@Age", 25)
+};
+DataTable result = await sqlServerHelper.ExecuteQueryAsync(queryText, parameters);
+
+bool isVerified = sqlServerHelper.VerifyUser("user@example.com", "password");
+```
+
+This setup allows you to easily interact with a SQL Server database, performing CRUD operations and logging activities using the LoggerProvider.
+
+### SQLiteHelper
+
+The `SQLiteHelper` class is a general-purpose interface for interacting with a SQLite database. This class provides methods to create, read, update, and delete records in a SQLite database, and it uses the `LoggerProvider` for logging operations.
+
+#### Methods
+
+- `SQLiteHelper(string connectionString)`: Initializes a new instance of the `SQLiteHelper` class.
+- `CreateTableAsync(string createTableQuery)`: Asynchronously creates a table if it doesn't already exist.
+- `CreateUserAsync(string email, string username, string password)`: Asynchronously creates a new user in the SQLite database.
+- `DeleteRecordAsync(string tableName, string conditionColumn, object conditionValue)`: Deletes a record from a specified table based on a condition.
+- `ExecuteNonQueryAsync(string commandText, SQLiteParameter[] parameters = null)`: Executes a non-query SQL command asynchronously.
+- `ExecuteQueryAsync(string queryText, SQLiteParameter[] parameters = null)`: Executes a SQL query and returns the result as a DataTable.
+- `InsertIntoTableAsync(string tableName, Dictionary<string, object?> columnData)`: Inserts a new record into a specified table.
+- `RetrieveAllViewModelStatesAsync(string viewModelName)`: Asynchronously retrieves the serialized states of all instances of a specific ViewModel from the database.
+- `SaveSingletonViewModelStateAsync(string viewModelName, string serializedState)`: Asynchronously saves the serialized state of a ViewModel into the database.
+- `SaveViewModelStateAsync(string viewModelName, string instanceId, string serializedState)`: Asynchronously saves the serialized state of a ViewModel into the database.
+- `StoreUniqueIdentifierAsync(string userId, string uniqueIdentifier)`: Stores a unique identifier for a user.
+- `VerifyUserAsync(string email, string password)`: Asynchronously verifies if a user with the given email and password exists in the SQLite database.
+
+### Usage
+
+To use the `SQLiteHelper` class in your application, follow these steps:
+
+1. Create an instance of `SQLiteHelper` in your code:
+    ```csharp
+    var sqliteHelper = new SQLiteHelper("your_connection_string");
+    ```
+
+2. Use the available methods to interact with the SQLite database. For example, to create a table:
+    ```csharp
+    await sqliteHelper.CreateTableAsync("CREATE TABLE IF NOT EXISTS Users (Id INTEGER PRIMARY KEY, Email TEXT, Username TEXT, Password TEXT)");
+    ```
+
+3. To insert a user:
+    ```csharp
+    await sqliteHelper.CreateUserAsync("user@example.com", "username", "password");
+    ```
+
+4. To execute a non-query command:
+    ```csharp
+    string commandText = "INSERT INTO Users (Name, Age) VALUES (@Name, @Age)";
+    SQLiteParameter[] parameters = {
+        new SQLiteParameter("@Name", "John"),
+        new SQLiteParameter("@Age", 30)
+    };
+    await sqliteHelper.ExecuteNonQueryAsync(commandText, parameters);
+    ```
+
+5. To execute a query and get results as a DataTable:
+    ```csharp
+    string queryText = "SELECT * FROM Users WHERE Age > @Age";
+    SQLiteParameter[] parameters = {
+        new SQLiteParameter("@Age", 25)
+    };
+    DataTable result = await sqliteHelper.ExecuteQueryAsync(queryText, parameters);
+    ```
+
+6. To verify a user:
+    ```csharp
+    bool isVerified = await sqliteHelper.VerifyUserAsync("user@example.com", "password");
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+public class User
+{
+    public int Id { get; set; }
+    public string Email { get; set; }
+    public string Username { get; set; }
+    public string Password { get; set; }
+}
+
+var sqliteHelper = new SQLiteHelper("your_connection_string");
+
+await sqliteHelper.CreateTableAsync("CREATE TABLE IF NOT EXISTS Users (Id INTEGER PRIMARY KEY, Email TEXT, Username TEXT, Password TEXT)");
+
+await sqliteHelper.CreateUserAsync("user@example.com", "username", "password");
+
+string commandText = "INSERT INTO Users (Name, Age) VALUES (@Name, @Age)";
+SQLiteParameter[] parameters = {
+    new SQLiteParameter("@Name", "John"),
+    new SQLiteParameter("@Age", 30)
+};
+await sqliteHelper.ExecuteNonQueryAsync(commandText, parameters);
+
+string queryText = "SELECT * FROM Users WHERE Age > @Age";
+parameters = new SQLiteParameter[] {
+    new SQLiteParameter("@Age", 25)
+};
+DataTable result = await sqliteHelper.ExecuteQueryAsync(queryText, parameters);
+
+bool isVerified = await sqliteHelper.VerifyUserAsync("user@example.com", "password");
+```
+
+This setup allows you to easily interact with a SQLite database, performing CRUD operations and logging activities using the LoggerProvider.
