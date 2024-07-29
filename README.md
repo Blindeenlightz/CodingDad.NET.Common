@@ -96,6 +96,19 @@ The `CodingDad.NET.Common` library is a versatile and comprehensive set of compo
     - [DbLoggerConfiguration](#dbloggerconfiguration)
       - [Properties](#properties-4)
       - [Usage Example](#usage-example)
+- [StorageLocationManager](#storagelocationmanager)
+  - [Methods](#methods-19)
+  - [Usage](#usage-14)
+  - [Example](#example-9)
+- [User Creation and Login](#user-creation-and-login)
+  - [Components](#components)
+    - [UserModel](#usermodel)
+    - [UserIdentifier](#useridentifier)
+    - [UserViewModel](#userviewmodel)
+  - [User Controls](#user-controls)
+    - [UserCreateView](#usercreateview)
+    - [UserLoginView](#userloginview)
+  - [Usage](#usage-15)
 
 ## Behaviors
 
@@ -1297,5 +1310,112 @@ public class Program
 ```
 
 This setup allows you to manage storage locations for your application efficiently, providing methods to create directories in various special folders on a Windows machine.
+
+## User Creation and Login
+
+This section provides an overview of the components used for handling user creation and login functionalities in the `CodingDad.Common` namespace. These components work together to provide a full implementation for user management in your application.
+
+### Components
+
+#### UserModel
+
+The `UserModel` class represents a user with properties for email, ID, and username.
+
+- **Properties:**
+  - `Email`: The user's email address.
+  - `Id`: The user's unique identifier.
+  - `Username`: The user's username.
+
+#### UserIdentifier
+
+The `UserIdentifier` class provides functionality to uniquely identify a user based on certain system attributes.
+
+- **Constructor:**
+  - `UserIdentifier(NetworkInterface[] nics)`: Initializes a new instance of the `UserIdentifier` class with an array of `NetworkInterface` objects.
+
+- **Methods:**
+  - `string GetUniqueIdentifier()`: Generates a unique identifier for the user based on system attributes.
+
+#### UserViewModel
+
+The `UserViewModel` class provides a view model for handling user creation and login functionalities. It utilizes the `LoggerProvider` for logging various operations.
+
+- **Constructor:**
+  - `UserViewModel(IDatabaseHelper databaseManager, string email, string username)`: Initializes a new instance of the `UserViewModel` class.
+
+- **Properties:**
+  - `Email`: The user's email address.
+  - `Username`: The user's username.
+  - `CreateUserCommand`: Command for creating a new user.
+  - `GoToCreateUserCommand`: Command for navigating to the create user view.
+  - `LoginCommand`: Command for logging in a user.
+
+- **Methods:**
+  - `int GenerateUniqueId()`: Generates a unique ID for the user.
+  - `bool IsUserLoggedIn()`: Checks if the user is logged in.
+  - `void CreateUser(string password)`: Creates a new user.
+  - `void GoToCreateUser()`: Navigates to the create user view.
+  - `void ValidateUserLogin(string password)`: Validates the user login.
+
+### User Controls
+
+#### UserCreateView
+
+The `UserCreateView` user control provides the UI for creating a new user.
+
+- **Components:**
+  - `TextBox`: For entering the new username.
+  - `TextBox`: For entering the new email.
+  - `PasswordBox`: For entering the password.
+  - `Button`: For submitting the create user command.
+
+#### UserLoginView
+
+The `UserLoginView` user control provides the UI for logging in a user.
+
+- **Components:**
+  - `TextBox`: For entering the username.
+  - `PasswordBox`: For entering the password.
+  - `Button`: For submitting the login command.
+  - `Button`: For navigating to the create user view.
+
+### Usage
+
+To integrate the user creation and login functionality into your application, follow these steps:
+
+1. **ViewModel Initialization:**
+
+```csharp
+   var databaseManager = new YourDatabaseHelperImplementation();
+   var userViewModel = new UserViewModel(databaseManager, "initialEmail@example.com", "initialUsername");
+```
+2. **Bind ViewModel to Views:**
+
+```xml
+<!-- UserCreateView.xaml -->
+<UserControl
+    x:Class="CodingDad.Common.UserCreationLogin.Views.UserCreateView"
+    DataContext="{Binding UserViewModelInstance}"
+    ...>
+    ...
+</UserControl>
+
+<!-- UserLoginView.xaml -->
+<UserControl
+    x:Class="CodingDad.Common.UserCreationLogin.Views.UserLoginView"
+    DataContext="{Binding UserViewModelInstance}"
+    ...>
+    ...
+</UserControl>
+```
+
+3. **Configure Commands and Logging:**
+
+Ensure that the LoggerProvider is correctly set up to log user creation and login operations.
+
+By following these steps, you can utilize the user creation and login functionalities provided by the CodingDad.Common namespace in your application, ensuring a consistent and efficient user management experience.
+
+
+
 
 
