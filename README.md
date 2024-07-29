@@ -8,6 +8,8 @@ The `CodingDad.NET.Common` library is a versatile and comprehensive set of compo
 
 ## Table of Contents
 
+## Table of Contents
+
 - [Overview](#overview)
 - [Behaviors](#behaviors)
   - [BehaviorAttacher](#behaviorattacher)
@@ -109,6 +111,14 @@ The `CodingDad.NET.Common` library is a versatile and comprehensive set of compo
     - [UserCreateView](#usercreateview)
     - [UserLoginView](#userloginview)
   - [Usage](#usage-15)
+- [MefJsonUtility](#mefjsonutility)
+  - [Methods](#methods-20)
+  - [Usage](#usage-16)
+  - [Example](#example-10)
+- [BaseViewModel](#baseviewmodel)
+  - [Properties](#properties-5)
+  - [Methods](#methods-21)
+  - [Usage](#usage-17)
 
 ## Behaviors
 
@@ -1415,7 +1425,130 @@ Ensure that the LoggerProvider is correctly set up to log user creation and logi
 
 By following these steps, you can utilize the user creation and login functionalities provided by the CodingDad.Common namespace in your application, ensuring a consistent and efficient user management experience.
 
+### MefJsonUtility
 
+The `MefJsonUtility` class is a utility for serializing and deserializing objects while also managing MEF (Managed Extensibility Framework) imports. It ensures that deserialized objects have their MEF dependencies satisfied, making it useful for applications that rely on dependency injection and modular components.
 
+#### Methods
 
+- `DeserializeAndSatisfyImports<T>(string json) where T : class`: Deserializes a JSON string to an object of type `T` and satisfies its MEF imports.
+- `Initialize(CompositionContainer container)`: Initializes the `MefJsonUtility` with a `CompositionContainer`.
+- `Serialize<T>(T obj)`: Serializes an object of type `T` to a JSON string.
+
+### Usage
+
+To use the `MefJsonUtility` class, follow these steps:
+
+1. Initialize the utility with a `CompositionContainer`:
+    ```csharp
+    var catalog = new AggregateCatalog();
+    // Add parts to the catalog here
+    var container = new CompositionContainer(catalog);
+    MefJsonUtility.Initialize(container);
+    ```
+
+2. Serialize an object to a JSON string:
+    ```csharp
+    var myObject = new MyClass { Property1 = "value1", Property2 = "value2" };
+    string jsonString = MefJsonUtility.Serialize(myObject);
+    ```
+
+3. Deserialize a JSON string to an object and satisfy MEF imports:
+    ```csharp
+    string jsonString = "{ \"Property1\": \"value1\", \"Property2\": \"value2\" }";
+    var myObject = MefJsonUtility.DeserializeAndSatisfyImports<MyClass>(jsonString);
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+using System;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+using System.Text.Json;
+
+public class MyClass
+{
+    public string Property1 { get; set; }
+    public string Property2 { get; set; }
+
+    [Import]
+    public IMyService MyService { get; set; }
+}
+
+public interface IMyService
+{
+    void DoWork();
+}
+
+[Export(typeof(IMyService))]
+public class MyService : IMyService
+{
+    public void DoWork()
+    {
+        Console.WriteLine("Work done!");
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // Setup MEF
+        var catalog = new AggregateCatalog();
+        catalog.Catalogs.Add(new AssemblyCatalog(typeof(MyService).Assembly));
+        var container = new CompositionContainer(catalog);
+        MefJsonUtility.Initialize(container);
+
+        // Create and serialize an object
+        var myObject = new MyClass { Property1 = "value1", Property2 = "value2" };
+        string jsonString = MefJsonUtility.Serialize(myObject);
+
+        // Deserialize the object and satisfy MEF imports
+        var deserializedObject = MefJsonUtility.DeserializeAndSatisfyImports<MyClass>(jsonString);
+
+        // Use the imported service
+        deserializedObject.MyService.DoWork();
+    }
+}
+```
+
+This setup ensures that serialized objects can be deserialized with all their MEF dependencies correctly satisfied, maintaining the integrity of the dependency injection pattern.
+
+## BaseViewModel
+
+The `BaseViewModel` class serves as a base class for view models in a MVVM (Model-View-ViewModel) architecture. It provides essential functionality for property change notification and resource management.
+
+### Properties
+
+- **Id**: A unique identifier for the view model instance.
+- **IsDirty**: A flag indicating whether the view model has unsaved changes.
+
+### Methods
+
+- **Dispose()**: Releases all resources used by the view model.
+- **Dispose(bool disposing)**: Releases unmanaged resources and optionally releases managed resources.
+- **OnPropertyChanged(string? propertyName = null)**: Raises the `PropertyChanged` event to notify the UI of property changes.
+- **SetProperty<T>(ref T storage, T value, string? propertyName = null)**: Sets a property and raises the `PropertyChanged` event only if the new value is different from the old value.
+
+### Usage
+
+To create a view model that inherits from `BaseViewModel`, define your properties and use the `SetProperty` method to update their values and notify listeners of changes:
+
+```csharp
+public class MyViewModel : BaseViewModel
+{
+    private string _name;
+
+    public string Name
+    {
+        get => _name;
+        set => SetProperty(ref _name, value);
+    }
+}
+```
+
+In this example, MyViewModel inherits from BaseViewModel and uses the SetProperty method to manage the Name property, ensuring that property change notifications are sent to the UI.
 
