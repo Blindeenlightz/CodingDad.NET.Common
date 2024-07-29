@@ -6,6 +6,7 @@ using CodingDad.Common.Loggers;
 using System;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Extensions.Logging;
 
 namespace CodingDad.Common.UserCreationLogin.ViewModels
 {
