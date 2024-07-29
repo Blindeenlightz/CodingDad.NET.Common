@@ -1224,4 +1224,78 @@ logger.LogInformation("This is an informational message.");
 logger.LogError("This is an error message.");
 ```
 
+## StorageLocationManager
+
+The `StorageLocationManager` class provides utility methods for managing storage locations on a Windows machine. It includes methods to create directories in various special folders, such as `AppData`, `CommonApplicationData`, and `LocalApplicationData`, as well as custom and temporary directories.
+
+### Methods
+
+- `CreateAppDataDirectory(string appName)`: Creates a directory for the application in the `AppData` folder.
+- `CreateCommonAppDataDirectory(string appName)`: Creates a directory for the application in the `CommonApplicationData` folder.
+- `CreateCustomDirectory(string customPath, string appName)`: Creates a directory for the application in a custom folder.
+- `CreateLocalAppDataDirectory(string appName)`: Creates a directory for the application in the `LocalApplicationData` folder.
+- `CreateTempDirectory(string appName)`: Creates a directory for the application in the system's temporary folder.
+
+### Usage
+
+To use the `StorageLocationManager` class, follow these steps:
+
+1. Create a directory in the `AppData` folder:
+    ```csharp
+    string appDataDirectory = StorageLocationManager.CreateAppDataDirectory("MyApp");
+    ```
+
+2. Create a directory in the `CommonApplicationData` folder:
+    ```csharp
+    string commonAppDataDirectory = StorageLocationManager.CreateCommonAppDataDirectory("MyApp");
+    ```
+
+3. Create a directory in a custom folder:
+    ```csharp
+    string customDirectory = StorageLocationManager.CreateCustomDirectory("C:\\CustomPath", "MyApp");
+    ```
+
+4. Create a directory in the `LocalApplicationData` folder:
+    ```csharp
+    string localAppDataDirectory = StorageLocationManager.CreateLocalAppDataDirectory("MyApp");
+    ```
+
+5. Create a directory in the system's temporary folder:
+    ```csharp
+    string tempDirectory = StorageLocationManager.CreateTempDirectory("MyApp");
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+using System;
+using CodingDad.Common.Storage;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // Create directories
+        string appDataDirectory = StorageLocationManager.CreateAppDataDirectory("MyApp");
+        Console.WriteLine($"AppData Directory: {appDataDirectory}");
+
+        string commonAppDataDirectory = StorageLocationManager.CreateCommonAppDataDirectory("MyApp");
+        Console.WriteLine($"CommonAppData Directory: {commonAppDataDirectory}");
+
+        string customDirectory = StorageLocationManager.CreateCustomDirectory("C:\\CustomPath", "MyApp");
+        Console.WriteLine($"Custom Directory: {customDirectory}");
+
+        string localAppDataDirectory = StorageLocationManager.CreateLocalAppDataDirectory("MyApp");
+        Console.WriteLine($"LocalAppData Directory: {localAppDataDirectory}");
+
+        string tempDirectory = StorageLocationManager.CreateTempDirectory("MyApp");
+        Console.WriteLine($"Temp Directory: {tempDirectory}");
+    }
+}
+```
+
+This setup allows you to manage storage locations for your application efficiently, providing methods to create directories in various special folders on a Windows machine.
+
 
