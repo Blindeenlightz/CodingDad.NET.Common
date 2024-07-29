@@ -52,16 +52,50 @@ The `CodingDad.NET.Common` library is a versatile and comprehensive set of compo
   - [BehaviorFactory](#behaviorfactory)
     - [Methods](#methods-8)
     - [Usage](#usage-8)
-    - [Example](#example)
+    - [Example](#example-3)
   - [ViewModelFactory](#viewmodelfactory)
     - [Methods](#methods-9)
     - [Usage](#usage-9)
-    - [Example](#example-2)
+    - [Example](#example-4)
 - [InputOutput](#inputoutput)
   - [CursorHelper](#cursorhelper)
     - [Methods](#methods-10)
     - [Usage](#usage-10)
-    - [Example](#example)
+    - [Example](#example-5)
+- [Locators](#locators)
+  - [ContainerLocator](#containerlocator)
+    - [Methods](#methods-11)
+    - [Usage](#usage-11)
+    - [Example](#example-6)
+- [Loggers](#loggers)
+  - [LoggerProvider](#loggerprovider)
+    - [Methods](#methods-12)
+    - [Usage](#usage-12)
+    - [Example](#example-7)
+  - [ColorConsoleLogger](#colorconsolelogger)
+    - [Methods](#methods-13)
+    - [Private Methods](#private-methods-3)
+    - [Usage](#usage-13)
+    - [Example](#example-8)
+  - [DatabaseLoggers](#databaseloggers)
+    - [DbLoggerBase](#dbloggerbase)
+      - [Constructor](#constructor)
+      - [Methods](#methods-14)
+    - [DbLoggerProvider](#dbloggerprovider)
+      - [Constructor](#constructor-1)
+      - [Methods](#methods-15)
+    - [MongoDbLogger](#mongodblogger)
+      - [Constructor](#constructor-2)
+      - [Methods](#methods-16)
+    - [SqliteLogger](#sqlitelogger)
+      - [Constructor](#constructor-3)
+      - [Methods](#methods-17)
+    - [SqlServerLogger](#sqlserverlogger)
+      - [Constructor](#constructor-4)
+      - [Methods](#methods-18)
+    - [DbLoggerConfiguration](#dbloggerconfiguration)
+      - [Properties](#properties-4)
+      - [Usage Example](#usage-example)
 
 ## Behaviors
 
@@ -957,10 +991,237 @@ class Program
 ```
 This setup allows you to efficiently resolve dependencies and compose parts using MEF, providing a flexible and powerful mechanism for dependency injection in your applications.
 
+##Loggers
+### LoggerProvider
+
+The `LoggerProvider` class provides a static logging service using the `ColorConsoleLoggerProvider`. This class is designed to log messages with different log levels, leveraging the `Microsoft.Extensions.Logging` framework.
+
+#### Methods
+
+- `Log(string message, LogLevel logLevel = LogLevel.Information)`: Logs a message with the specified log level.
+
+### Usage
+
+To use the `LoggerProvider` class, follow these steps:
+
+1. Log a message with the default log level (Information):
+    ```csharp
+    LoggerProvider.Log("This is an informational message.");
+    ```
+
+2. Log a message with a specific log level:
+    ```csharp
+    LoggerProvider.Log("This is an error message.", LogLevel.Error);
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+using Microsoft.Extensions.Logging;
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+        // Log an informational message
+        LoggerProvider.Log("Application has started.");
+
+        // Log an error message
+        LoggerProvider.Log("An error occurred.", LogLevel.Error);
+
+        // Log a debug message
+        LoggerProvider.Log("Debugging application.", LogLevel.Debug);
+    }
+}
+```
+
+This setup allows you to log messages with different log levels using the LoggerProvider class, providing a consistent and centralized logging mechanism for your applications.
+
+### ColorConsoleLogger
+
+The `ColorConsoleLogger` class provides color-coded logging to the console or debug window, leveraging the `Microsoft.Extensions.Logging` framework. This logger is designed to enhance log readability by using different colors for different log levels.
+
+#### Methods
+
+- `ColorConsoleLogger(string name, Func<ColorConsoleLoggerConfiguration> getCurrentConfig, LoggerOutputTarget outputTarget = LoggerOutputTarget.DebugWindow)`: Initializes a new instance of the `ColorConsoleLogger` class.
+- `BeginScope<TState>(TState state)`: This method is not supported in `ColorConsoleLogger`.
+- `IsEnabled(LogLevel logLevel)`: Checks if the specified log level is enabled.
+- `Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)`: Logs a message with the specified log level.
+
+#### Private Methods
+
+- `SetConsoleColor(ConsoleColor color)`: Sets the console color.
+- `GetCurrentConfig()`: Retrieves the current logger configuration.
+- `WriteLog<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter, ColorConsoleLoggerConfiguration config)`: Writes the log message to the console or debug window.
+
+### Usage
+
+To use the `ColorConsoleLogger` class, follow these steps:
+
+1. Configure the logger in your application:
+    ```csharp
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var logger = new ColorConsoleLogger("MyLogger", () => new ColorConsoleLoggerConfiguration());
+            logger.Log(LogLevel.Information, new EventId(1, "AppStart"), "Application has started.", null, (state, exception) => state);
+        }
+    }
+    ```
+
+2. Log messages with different log levels:
+    ```csharp
+    var logger = new ColorConsoleLogger("MyLogger", () => new ColorConsoleLoggerConfiguration());
+
+    // Log an informational message
+    logger.Log(LogLevel.Information, new EventId(1, "InfoEvent"), "This is an informational message.", null, (state, exception) => state);
+
+    // Log an error message
+    logger.Log(LogLevel.Error, new EventId(2, "ErrorEvent"), "This is an error message.", null, (state, exception) => state);
+
+    // Log a debug message
+    logger.Log(LogLevel.Debug, new EventId(3, "DebugEvent"), "This is a debug message.", null, (state, exception) => state);
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+using System;
+using Microsoft.Extensions.Logging;
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        // Configure logger
+        var logger = new ColorConsoleLogger("MyLogger", () => new ColorConsoleLoggerConfiguration
+        {
+            LogLevelToColorMap = new Dictionary<LogLevel, ConsoleColor>
+            {
+                [LogLevel.Trace] = ConsoleColor.Gray,
+                [LogLevel.Debug] = ConsoleColor.Blue,
+                [LogLevel.Information] = ConsoleColor.Green,
+                [LogLevel.Warning] = ConsoleColor.Yellow,
+                [LogLevel.Error] = ConsoleColor.Red,
+                [LogLevel.Critical] = ConsoleColor.Magenta
+            }
+        });
+
+        // Log messages
+        logger.Log(LogLevel.Information, new EventId(1, "InfoEvent"), "This is an informational message.", null, (state, exception) => state);
+        logger.Log(LogLevel.Error, new EventId(2, "ErrorEvent"), "This is an error message.", null, (state, exception) => state);
+        logger.Log(LogLevel.Debug, new EventId(3, "DebugEvent"), "This is a debug message.", null, (state, exception) => state);
+    }
+}
+
+public class ColorConsoleLoggerConfiguration
+{
+    public Dictionary<LogLevel, ConsoleColor> LogLevelToColorMap { get; set; } = new();
+}
+```
+
+This setup allows you to log messages with different log levels using the ColorConsoleLogger class, providing a color-coded output to enhance log readability.
 
 
+### DatabaseLoggers
 
+The `DatabaseLoggers` namespace contains classes for logging to various types of databases using the `Microsoft.Extensions.Logging` framework. This setup allows for centralized logging to SQL Server, SQLite, or MongoDB databases.
 
+#### Classes
 
+- `DbLoggerBase`: Abstract base class for database loggers.
+- `DbLoggerProvider`: Provides instances of `DbLoggerBase` based on configuration.
+- `MongoDbLogger`: MongoDB-specific logger implementation.
+- `SqliteLogger`: SQLite-specific logger implementation.
+- `SqlServerLogger`: SQL Server-specific logger implementation.
+- `DbLoggerConfiguration`: Base configuration class for database loggers.
+
+#### DbLoggerBase
+
+The `DbLoggerBase` class is an abstract base class for implementing database loggers.
+
+**Constructor:**
+- `DbLoggerBase(string connectionString, string logTable, LogLevel minLogLevel)`: Initializes a new instance of the `DbLoggerBase` class.
+
+**Methods:**
+- `BeginScope<TState>(TState state)`: Not supported, returns `null`.
+- `IsEnabled(LogLevel logLevel)`: Checks if the specified log level is enabled.
+- `Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)`: Logs the specified log level, event ID, state, exception, and formatter to the database.
+- `LogToDatabase(LogLevel logLevel, string message, Exception exception)`: Abstract method to log the message to the database.
+
+#### DbLoggerProvider
+
+The `DbLoggerProvider` class provides instances of `DbLoggerBase` based on the provided configuration.
+
+**Constructor:**
+- `DbLoggerProvider(DbLoggerConfiguration config)`: Initializes a new instance of the `DbLoggerProvider` class.
+
+**Methods:**
+- `CreateLogger(string categoryName)`: Creates a new logger instance of the specified category.
+- `Dispose()`: Disposes the logger provider and releases resources.
+- `CreateLoggerInstance()`: Creates a logger instance based on the current configuration.
+
+#### MongoDbLogger
+
+The `MongoDbLogger` class is a MongoDB-specific logger implementation.
+
+**Constructor:**
+- `MongoDbLogger(string connectionString, string logCollection, LogLevel minLogLevel)`: Initializes a new instance of the `MongoDbLogger` class.
+
+**Methods:**
+- `LogToDatabase(LogLevel logLevel, string message, Exception exception)`: Logs the message to the MongoDB database.
+
+#### SqliteLogger
+
+The `SqliteLogger` class is a SQLite-specific logger implementation.
+
+**Constructor:**
+- `SqliteLogger(string connectionString, string logTable, LogLevel minLogLevel)`: Initializes a new instance of the `SqliteLogger` class.
+
+**Methods:**
+- `LogToDatabase(LogLevel logLevel, string message, Exception exception)`: Logs the message to the SQLite database.
+
+#### SqlServerLogger
+
+The `SqlServerLogger` class is a SQL Server-specific logger implementation.
+
+**Constructor:**
+- `SqlServerLogger(string connectionString, string logTable, LogLevel minLogLevel)`: Initializes a new instance of the `SqlServerLogger` class.
+
+**Methods:**
+- `LogToDatabase(LogLevel logLevel, string message, Exception exception)`: Logs the message to the SQL Server database.
+
+#### DbLoggerConfiguration
+
+The `DbLoggerConfiguration` class provides the configuration for database loggers.
+
+**Properties:**
+- `string ConnectionString { get; set; }`: Gets or sets the connection string for the database.
+- `string DatabaseType { get; set; }`: Gets or sets the database type (e.g., "SqlServer", "MongoDb", "Sqlite").
+- `string LogTable { get; set; }`: Gets or sets the table or collection name for storing logs.
+- `LogLevel MinLogLevel { get; set; }`: Gets or sets the minimum log level to log (default is Information).
+
+#### Usage Example
+
+```csharp
+var config = new DbLoggerConfiguration
+{
+    ConnectionString = "your-connection-string",
+    DatabaseType = "SqlServer",
+    LogTable = "Logs",
+    MinLogLevel = LogLevel.Information
+};
+
+using var loggerProvider = new DbLoggerProvider(config);
+var logger = loggerProvider.CreateLogger("MyLogger");
+
+logger.LogInformation("This is an informational message.");
+logger.LogError("This is an error message.");
+```
 
 
