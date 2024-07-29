@@ -848,3 +848,119 @@ public partial class MainWindow : Window
 ```
 
 This setup allows you to create and use custom cursors in your WPF applications, enhancing the user experience for drag-and-drop operations.
+
+##Locators
+
+### ContainerLocator
+
+The `ContainerLocator` class provides a static locator service for resolving dependencies via MEF (Managed Extensibility Framework). This class is designed to compose parts and retrieve exported values, enabling efficient dependency injection and service location.
+
+#### Methods
+
+- `ComposeParts(object obj)`: Composes the parts of a particular object.
+- `GetExportedValue<T>(string contractName = "")`: Retrieves the exported value of the specified type `T`.
+- `GetExportedValues<T>(string contractName = "")`: Retrieves the exported values of the specified type `T`.
+- `Initialize(CompositionContainer container)`: Initializes the composition container.
+
+### Usage
+
+To use the `ContainerLocator` class, follow these steps:
+
+1. Initialize the `ContainerLocator` with a `CompositionContainer`:
+    ```csharp
+    var catalog = new AggregateCatalog();
+    // Add parts to the catalog here
+    var container = new CompositionContainer(catalog);
+    ContainerLocator.Initialize(container);
+    ```
+
+2. Compose the parts of an object:
+    ```csharp
+    var myObject = new MyObject();
+    ContainerLocator.ComposeParts(myObject);
+    ```
+
+3. Retrieve an exported value:
+    ```csharp
+    var myService = ContainerLocator.GetExportedValue<IMyService>();
+    ```
+
+4. Retrieve exported values:
+    ```csharp
+    var services = ContainerLocator.GetExportedValues<IMyService>();
+    ```
+
+### Example
+
+Here's a complete example in context:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.Composition;
+using System.ComponentModel.Composition.Hosting;
+
+public interface IMyService
+{
+    void DoWork();
+}
+
+[Export(typeof(IMyService))]
+public class MyService : IMyService
+{
+    public void DoWork()
+    {
+        Console.WriteLine("Work done!");
+    }
+}
+
+public class MyObject
+{
+    [Import]
+    public IMyService MyService { get; set; }
+
+    public void UseService()
+    {
+        MyService.DoWork();
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Setup MEF
+        var catalog = new AggregateCatalog();
+        catalog.Catalogs.Add(new AssemblyCatalog(typeof(MyService).Assembly));
+        var container = new CompositionContainer(catalog);
+        ContainerLocator.Initialize(container);
+
+        // Compose parts
+        var myObject = new MyObject();
+        ContainerLocator.ComposeParts(myObject);
+
+        // Use the service
+        myObject.UseService();
+
+        // Retrieve an exported value
+        var myService = ContainerLocator.GetExportedValue<IMyService>();
+        myService.DoWork();
+
+        // Retrieve exported values
+        var services = ContainerLocator.GetExportedValues<IMyService>();
+        foreach (var service in services)
+        {
+            service.DoWork();
+        }
+    }
+}
+```
+This setup allows you to efficiently resolve dependencies and compose parts using MEF, providing a flexible and powerful mechanism for dependency injection in your applications.
+
+
+
+
+
+
+
+
