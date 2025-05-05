@@ -7,6 +7,7 @@ using System.Collections.Concurrent;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace CodingDad.NET.Common.Loggers.ColorConsoleLogger
@@ -77,33 +78,38 @@ namespace CodingDad.NET.Common.Loggers.ColorConsoleLogger
 		/// <returns>The current <see cref="ColorConsoleLoggerConfiguration"/>.</returns>
 		private ColorConsoleLoggerConfiguration GetCurrentConfig () => _currentConfig;
 
-		/// <summary>
-		/// Loads the logger configuration from an embedded JSON file.
-		/// </summary>
-		/// <returns>The populated <see cref="ColorConsoleLoggerConfiguration"/>.</returns>
-		/// <exception cref="InvalidOperationException">Thrown when the embedded resource is not found.</exception>
-		private ColorConsoleLoggerConfiguration LoadEmbeddedConfig ()
-		{
-			try
-			{
-				var assembly = Assembly.GetExecutingAssembly();
-				using Stream stream = assembly.GetManifestResourceStream("CodingDad.Common.Loggers.ColorConsoleLogger.colorloggersettings.json");
-				if (stream == null)
-				{
-					throw new InvalidOperationException("Embedded colorloggersettings.json not found.");
-				}
+        /// <summary>
+        /// Loads the logger configuration from an embedded JSON file.
+        /// </summary>
+        /// <returns>The populated <see cref="ColorConsoleLoggerConfiguration"/>.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the embedded resource is not found.</exception>
+        private ColorConsoleLoggerConfiguration LoadEmbeddedConfig ()
+        {
+            try
+            {
+                var asm = Assembly.GetExecutingAssembly();
 
-				using StreamReader reader = new(stream);
-				var configJson = reader.ReadToEnd();
+                // Find the resource whose name ends with our JSON filename
+                var resourceName = asm.GetManifestResourceNames()
+                                      .FirstOrDefault(n => n.EndsWith("colorloggersettings.json", StringComparison.OrdinalIgnoreCase));
 
-				// Deserialize the JSON to populate _currentConfig
-				return JsonConvert.DeserializeObject<ColorConsoleLoggerConfiguration>(configJson);
-			}
-			catch (Exception ex)
-			{
-				Debug.WriteLine(ex.Message);
-				throw new InvalidOperationException("Failed to load embedded configuration.", ex);
-			}
-		}
-	}
+                if (resourceName is null)
+                    throw new InvalidOperationException("Embedded colorloggersettings.json not found.");
+
+                using var stream = asm.GetManifestResourceStream(resourceName)
+                                 ?? throw new InvalidOperationException($"Could not load embedded resource '{resourceName}'.");
+
+                using var reader = new StreamReader(stream);
+                var configJson = reader.ReadToEnd();
+
+                return JsonConvert.DeserializeObject<ColorConsoleLoggerConfiguration>(configJson)
+                       ?? throw new InvalidOperationException("Deserialization of colorloggersettings.json returned null.");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                throw new InvalidOperationException("Failed to load embedded configuration.", ex);
+            }
+        }
+    }
 }
