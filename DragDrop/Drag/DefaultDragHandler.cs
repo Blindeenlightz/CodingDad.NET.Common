@@ -1,9 +1,12 @@
-﻿using System;
+﻿
+using CodingDad.NET.Common.DragDrop.Interfaces;
+using CodingDad.NET.Common.DragDrop.Utilities;
+using System;
 using System.Collections;
 using System.Linq;
 using System.Windows;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Drag
 {
     public class DefaultDragHandler : IDragSource
     {

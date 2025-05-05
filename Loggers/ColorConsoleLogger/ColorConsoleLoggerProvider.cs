@@ -1,4 +1,4 @@
-﻿using CodingDad.Common.Constants;
+﻿using CodingDad.NET.Common.Constants;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -9,7 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
-namespace CodingDad.Common.Loggers.ColorConsoleLogger
+namespace CodingDad.NET.Common.Loggers.ColorConsoleLogger
 {
 	/// <summary>
 	/// Provides instances of <see cref="ColorConsoleLogger"/> with dynamic configuration support.

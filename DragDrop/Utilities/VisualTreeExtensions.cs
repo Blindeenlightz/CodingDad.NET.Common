@@ -5,8 +5,9 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Collections.Generic;
 using System.Windows.Media.Media3D;
+using CodingDad.NET.Common.DragDrop.Utilities;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Utilities
 {
     public static class VisualTreeExtensions
     {

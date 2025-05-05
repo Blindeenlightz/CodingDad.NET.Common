@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Utilities
 {
     // Taken from Fluent Drag&Drop https://github.com/punker76/FluentDragDrop
     internal static class MouseHelper

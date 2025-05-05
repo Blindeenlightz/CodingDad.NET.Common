@@ -1,7 +1,6 @@
-﻿using CodingDad.DragDrop;
-using System.Windows;
+﻿using System.Windows;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Utilities
 {
     internal class DragDropEffectPreview : DragDropPreview
     {

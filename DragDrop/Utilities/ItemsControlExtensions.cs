@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Collections;
 using System.Windows.Controls.Primitives;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Utilities
 {
     public static class ItemsControlExtensions
     {

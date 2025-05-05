@@ -2,7 +2,7 @@
 using System;
 using System.Data.SqlClient;
 
-namespace CodingDad.Common.Loggers.DatabaseLoggers
+namespace CodingDad.NET.Common.Loggers.DatabaseLoggers
 {
 	public class SqlServerLogger : DbLoggerBase
 	{

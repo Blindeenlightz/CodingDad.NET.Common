@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CodingDad.Common.Events
+namespace CodingDad.NET.Common.Events
 {
 	public class EventAggregator
 	{

@@ -1,10 +1,13 @@
-﻿using System;
+﻿using CodingDad.NET.Common.DragDrop.Drop;
+using CodingDad.NET.Common.DragDrop.Enums;
+using CodingDad.NET.Common.DragDrop.Interfaces;
+using System;
 using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Interfaces
 {
     public interface IDropInfo
     {

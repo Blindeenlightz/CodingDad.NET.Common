@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 
-namespace CodingDad.Common.Loggers.DatabaseLoggers
+namespace CodingDad.NET.Common.Loggers.DatabaseLoggers
 {
 	/// <summary>
 	/// Abstract base class for database loggers.

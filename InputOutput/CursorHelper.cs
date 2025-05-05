@@ -12,7 +12,7 @@ using Brushes = System.Windows.Media.Brushes;
 using FontFamily = System.Windows.Media.FontFamily;
 using Point = System.Windows.Point;
 
-namespace CodingDad.Common.InputOutput
+namespace CodingDad.NET.Common.InputOutput
 {
     /// <summary>
     /// Provides utility methods for creating custom cursors in WPF applications.
@@ -113,17 +113,17 @@ namespace CodingDad.Common.InputOutput
             public static extern SafeIconHandle CreateIconIndirect (ref IconInfo icon);
 
             [DllImport("user32.dll")]
-            public static extern bool DestroyIcon (IntPtr hIcon);
+            public static extern bool DestroyIcon (nint hIcon);
 
             [DllImport("user32.dll")]
             [return: MarshalAs(UnmanagedType.Bool)]
-            public static extern bool GetIconInfo (IntPtr hIcon, ref IconInfo pIconInfo);
+            public static extern bool GetIconInfo (nint hIcon, ref IconInfo pIconInfo);
 
             public struct IconInfo
             {
                 public bool fIcon;
-                public IntPtr hbmColor;
-                public IntPtr hbmMask;
+                public nint hbmColor;
+                public nint hbmMask;
                 public int xHotspot;
                 public int yHotspot;
             }

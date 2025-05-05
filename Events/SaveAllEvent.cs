@@ -1,4 +1,4 @@
-﻿namespace CodingDad.Common.Events
+﻿namespace CodingDad.NET.Common.Events
 {
 	public class SaveAllEvent
 	{

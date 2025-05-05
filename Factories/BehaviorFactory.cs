@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 
-namespace CodingDad.Common.Factories
+namespace CodingDad.NET.Common.Factories
 {
     /// <summary>
     /// A factory class for creating instances of behaviors with dependency injection support.

@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Interfaces
 {
     /// <summary>
     /// Interface for objects that sort an IEnumerable of drag drop items that are

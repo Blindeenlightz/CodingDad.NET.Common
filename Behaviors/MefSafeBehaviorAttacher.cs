@@ -1,12 +1,12 @@
-﻿using CodingDad.Common.Factories;
-using CodingDad.Common.Loggers;
-using Microsoft.Xaml.Behaviors;
+﻿using Microsoft.Xaml.Behaviors;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Linq;
 using System.Windows;
+using CodingDad.NET.Common.Factories;
+using CodingDad.NET.Common.Loggers;
 
-namespace CodingDad.Common.Behaviors
+namespace CodingDad.NET.Common.Behaviors
 {
     /// <summary>
     /// Provides attached properties to dynamically attach behaviors to XAML elements using MEF for dependency injection.

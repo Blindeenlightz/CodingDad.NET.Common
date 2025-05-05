@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace CodingDad.Common.Behaviors
+namespace CodingDad.NET.Common.Behaviors
 {
     /// <summary>
     /// Provides attached properties to bind a command to the closing of a window.

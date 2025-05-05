@@ -1,9 +1,9 @@
-﻿using CodingDad.Common.Loggers;
+﻿using CodingDad.NET.Common.Loggers;
 using System;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 
-namespace CodingDad.Common.Factories
+namespace CodingDad.NET.Common.Factories
 {
 	/// <summary>
 	/// A static factory class for creating ViewModel instances and satisfying their dependencies via MEF.

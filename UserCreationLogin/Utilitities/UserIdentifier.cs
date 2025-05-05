@@ -4,7 +4,7 @@ using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace CodingDad.Common.UserCreationLogin.Utilitities
+namespace CodingDad.NET.Common.UserCreationLogin.Utilitities
 {
 	/// <summary>
 	/// Provides functionality to uniquely identify a user based on certain system attributes.

@@ -1,13 +1,8 @@
 ﻿using Microsoft.Data.Sqlite;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
-using System.Data.SQLite;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace CodingDad.Common.Loggers.DatabaseLoggers
+namespace CodingDad.NET.Common.Loggers.DatabaseLoggers
 {
 	/// <summary>
 	/// SQLite-specific logger implementation.

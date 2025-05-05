@@ -1,9 +1,9 @@
-﻿using CodingDad.Common.Constants;
+﻿using CodingDad.NET.Common.Constants;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Concurrent;
 
-namespace CodingDad.Common.Loggers.DatabaseLoggers
+namespace CodingDad.NET.Common.Loggers.DatabaseLoggers
 {
 	/// <summary>
 	/// Provides instances of <see cref="DbLoggerBase"/> based on configuration.

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace CodingDad.Common.Storage
+namespace CodingDad.NET.Common.Storage
 {
 	/// <summary>
 	/// A utility class for managing storage locations on a Windows machine.

@@ -1,4 +1,6 @@
-﻿namespace CodingDad.DragAndDrop
+﻿
+
+namespace CodingDad.NET.Common.DragDrop.Interfaces
 {
     /// <summary>
     /// Supports methods for models which can be dropped.

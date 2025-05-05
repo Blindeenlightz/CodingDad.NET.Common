@@ -1,8 +1,8 @@
-﻿using CodingDad.Common.Loggers.ColorConsoleLogger;
+﻿using CodingDad.NET.Common.Loggers.ColorConsoleLogger;
 using Microsoft.Extensions.Logging;
 using System.Reflection;
 
-namespace CodingDad.Common.Loggers
+namespace CodingDad.NET.Common.Loggers
 {
     /// <summary>
     /// Provides a static logging service using the ColorConsoleLoggerProvider.

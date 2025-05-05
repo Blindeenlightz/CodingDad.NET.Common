@@ -4,7 +4,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Linq;
 
-namespace CodingDad.Common.Locators
+namespace CodingDad.NET.Common.Locators
 {
 	/// <summary>
 	/// Provides a static locator service for resolving dependencies via MEF (Managed Extensibility Framework).

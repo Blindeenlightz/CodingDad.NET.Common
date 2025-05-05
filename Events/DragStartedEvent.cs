@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CodingDad.Common.Events
+namespace CodingDad.NET.Common.Events
 {
 	public class DragStartedEvent
 	{

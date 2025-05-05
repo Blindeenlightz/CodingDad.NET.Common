@@ -1,4 +1,4 @@
-﻿using CodingDad.Common.Loggers;
+﻿using CodingDad.NET.Common.Loggers;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CodingDad.Common.DbHelpers
+namespace CodingDad.NET.Common.DbHelpers
 {
     /// <summary>
     /// Provides a general-purpose interface for interacting with a SQLite database.

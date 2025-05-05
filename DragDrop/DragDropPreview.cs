@@ -1,4 +1,6 @@
-﻿using CodingDad.DragAndDrop;
+﻿
+using CodingDad.NET.Common.DragDrop.Interfaces;
+using CodingDad.NET.Common.DragDrop.Utilities;
 using System;
 using System.Collections;
 using System.Linq;
@@ -9,7 +11,7 @@ using System.Windows.Data;
 using System.Windows.Interop;
 using System.Windows.Media;
 
-namespace CodingDad.DragDrop
+namespace CodingDad.NET.Common.DragDrop
 {
     public class DragDropPreview : Popup
     {

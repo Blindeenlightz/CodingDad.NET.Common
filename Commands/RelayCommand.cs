@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace CodingDad.Common.Commands
+namespace CodingDad.NET.Common.Commands
 {
     /// <summary>
     /// A command whose sole purpose is to relay its functionality 

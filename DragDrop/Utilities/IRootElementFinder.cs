@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Utilities
 {
     /// <summary>
     /// Interface implemented by the root element finder.

@@ -3,7 +3,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Text.Json;
 
-namespace CodingDad.Common.Utilities
+namespace CodingDad.NET.Common.Utilities
 {
 	/// <summary>
 	/// <summary>

@@ -1,10 +1,12 @@
-﻿using System;
+﻿
+using CodingDad.NET.Common.DragDrop.Utilities;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Drop
 {
     public class DropTargetInsertionAdorner : DropTargetAdorner
     {

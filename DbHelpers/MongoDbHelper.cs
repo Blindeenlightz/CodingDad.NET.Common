@@ -3,10 +3,10 @@ using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using CodingDad.Common.Loggers;
 using Microsoft.Extensions.Logging;
+using CodingDad.NET.Common.Loggers;
 
-namespace CodingDad.Common.DbHelpers
+namespace CodingDad.NET.Common.DbHelpers
 {
     /// <summary>
     /// Provides a general-purpose interface for interacting with a MongoDB database.

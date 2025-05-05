@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace CodingDad.Common.UserCreationLogin.Views
+namespace CodingDad.NET.Common.UserCreationLogin.Views
 {
 	/// <summary>
 	/// Interaction logic for UserCreateView.xaml

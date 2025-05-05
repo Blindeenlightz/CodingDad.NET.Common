@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Media;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Interfaces
 {
     /// <summary>
     /// A helper class for Dpi logic cause Microsoft hides this with the internal flag.

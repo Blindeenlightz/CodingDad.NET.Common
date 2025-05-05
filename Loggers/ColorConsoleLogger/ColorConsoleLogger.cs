@@ -3,7 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 
-namespace CodingDad.Common.Loggers.ColorConsoleLogger
+namespace CodingDad.NET.Common.Loggers.ColorConsoleLogger
 {
 	/// <summary>
 	/// Provides color-coded logging to the console.

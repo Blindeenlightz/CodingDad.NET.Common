@@ -3,7 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 
-namespace CodingDad.Common.Loggers.DatabaseLoggers
+namespace CodingDad.NET.Common.Loggers.DatabaseLoggers
 {
 	/// <summary>
 	/// MongoDB-specific logger implementation.

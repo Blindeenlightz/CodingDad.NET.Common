@@ -1,4 +1,8 @@
-﻿using System;
+﻿
+using CodingDad.NET.Common.DragDrop.Enums;
+using CodingDad.NET.Common.DragDrop.Interfaces;
+using CodingDad.NET.Common.DragDrop.Utilities;
+using System;
 using System.Collections;
 using System.Linq;
 using System.Windows;
@@ -6,7 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Drop
 {
     [Flags]
     public enum RelativeInsertPosition

@@ -2,10 +2,10 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using CodingDad.Common.Loggers;
+using CodingDad.NET.Common.Loggers;
 using Microsoft.Extensions.Logging;
 
-namespace CodingDad.Common.DbHelpers
+namespace CodingDad.NET.Common.DbHelpers
 {
     /// <summary>
     /// Provides a general-purpose interface for interacting with a SQL Server database.

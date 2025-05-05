@@ -1,4 +1,4 @@
-﻿namespace CodingDad.Common.Constants
+﻿namespace CodingDad.NET.Common.Constants
 {
 	public static class DatabaseTypes
 	{

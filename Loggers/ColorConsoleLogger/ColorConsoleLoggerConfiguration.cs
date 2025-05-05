@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace CodingDad.Common.Loggers.ColorConsoleLogger
+namespace CodingDad.NET.Common.Loggers.ColorConsoleLogger
 {
 	/// <summary>
 	/// Represents the configuration settings for the ColorConsoleLogger.

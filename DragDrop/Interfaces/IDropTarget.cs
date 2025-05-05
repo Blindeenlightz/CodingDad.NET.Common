@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using CodingDad.NET.Common.DragDrop.Drop;
+using System.Windows;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Interfaces
 {
     /// <summary>
     /// Interface implemented by Drop Handlers.

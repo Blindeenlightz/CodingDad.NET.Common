@@ -1,4 +1,9 @@
-using CodingDad.DragDrop;
+using CodingDad.DragAndDrop;
+using CodingDad.NET.Common.DragDrop.Drag;
+using CodingDad.NET.Common.DragDrop.Drop;
+using CodingDad.NET.Common.DragDrop.Enums;
+using CodingDad.NET.Common.DragDrop.Icons;
+using CodingDad.NET.Common.DragDrop.Interfaces;
 using System;
 using System.Collections;
 using System.Linq;
@@ -9,7 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Utilities
 {
     public static class DragDropMain
     {

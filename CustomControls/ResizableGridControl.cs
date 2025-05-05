@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace CodingDad.Common.CustomControls
+namespace CodingDad.NET.Common.CustomControls
 {
     /// <summary>
     /// A custom Grid control that supports dynamic row and column resizing.
@@ -85,9 +85,9 @@ namespace CodingDad.Common.CustomControls
 
             // Identify which column should be resized
             double left = 0.0;
-            for (int i = 0; i < this.ColumnDefinitions.Count; i++)
+            for (int i = 0; i < ColumnDefinitions.Count; i++)
             {
-                double right = left + this.ColumnDefinitions [i].ActualWidth;
+                double right = left + ColumnDefinitions [i].ActualWidth;
                 if (Math.Abs(left - lastMousePosition.X) <= threshold)
                 {
                     isColumnResizing = true;
@@ -110,9 +110,9 @@ namespace CodingDad.Common.CustomControls
             {
                 // Identify which row should be resized
                 double top = 0.0;
-                for (int i = 0; i < this.RowDefinitions.Count; i++)
+                for (int i = 0; i < RowDefinitions.Count; i++)
                 {
-                    double bottom = top + this.RowDefinitions [i].ActualHeight;
+                    double bottom = top + RowDefinitions [i].ActualHeight;
                     if (Math.Abs(top - lastMousePosition.Y) <= threshold)
                     {
                         isRowResizing = true;

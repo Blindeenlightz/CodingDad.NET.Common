@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace CodingDad.Common.DbHelpers
+namespace CodingDad.NET.Common.DbHelpers
 {
 	public interface IDatabaseHelper
 	{

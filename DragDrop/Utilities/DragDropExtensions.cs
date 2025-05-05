@@ -1,10 +1,11 @@
+using CodingDad.NET.Common.DragDrop.Interfaces;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Utilities
 {
     public static class DragDropExtensions
     {
@@ -52,7 +53,7 @@ namespace CodingDad.DragAndDrop
         }
 
         /// <summary>
-        /// Determines whether the given element is ignored on drop action (<see cref="CodingDad.DragAndDrop.IsDragSourceProperty"/>).
+        /// Determines whether the given element is ignored on drop action (<see cref="DragAndDrop.IsDragSourceProperty"/>).
         /// </summary>
         /// <param name="element">The given element.</param>
         /// <returns>Element is ignored or not.</returns>
@@ -62,7 +63,7 @@ namespace CodingDad.DragAndDrop
         }
 
         /// <summary>
-        /// Determines whether the given element is ignored on drag start (<see cref="CodingDad.DragAndDrop.DragSourceIgnoreProperty"/>).
+        /// Determines whether the given element is ignored on drag start (<see cref="DragAndDrop.DragSourceIgnoreProperty"/>).
         /// </summary>
         /// <param name="element">The given element.</param>
         /// <returns>Element is ignored or not.</returns>
@@ -72,7 +73,7 @@ namespace CodingDad.DragAndDrop
         }
 
         /// <summary>
-        /// Determines whether the given element is ignored on drop action (<see cref="CodingDad.DragAndDrop.IsDropTargetProperty"/>).
+        /// Determines whether the given element is ignored on drop action (<see cref="DragAndDrop.IsDropTargetProperty"/>).
         /// </summary>
         /// <param name="element">The given element.</param>
         /// <returns>Element is ignored or not.</returns>

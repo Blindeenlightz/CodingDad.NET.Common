@@ -1,4 +1,4 @@
-﻿namespace CodingDad.Common.UserCreationLogin.Models
+﻿namespace CodingDad.NET.Common.UserCreationLogin.Models
 {
 	public class UserModel
 	{

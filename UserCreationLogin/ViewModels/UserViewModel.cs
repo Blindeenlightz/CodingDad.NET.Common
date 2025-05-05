@@ -1,14 +1,14 @@
-﻿using CodingDad.Common.Commands;
-using CodingDad.Common.DbHelpers;
-using CodingDad.Common.UserCreationLogin.Models;
-using CodingDad.Common.ViewModels;
-using CodingDad.Common.Loggers;
+﻿using CodingDad.NET.Common.Commands;
+using CodingDad.NET.Common.ViewModels;
 using System;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Extensions.Logging;
+using CodingDad.NET.Common.DbHelpers;
+using CodingDad.NET.Common.Loggers;
+using CodingDad.NET.Common.UserCreationLogin.Models;
 
-namespace CodingDad.Common.UserCreationLogin.ViewModels
+namespace CodingDad.NET.Common.UserCreationLogin.ViewModels
 {
     /// <summary>
     /// ViewModel for handling user creation and login functionalities.

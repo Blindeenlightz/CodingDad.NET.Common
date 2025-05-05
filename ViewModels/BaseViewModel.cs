@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
-namespace CodingDad.Common.ViewModels
+namespace CodingDad.NET.Common.ViewModels
 {
 	public abstract class BaseViewModel : INotifyPropertyChanged, IDisposable
 	{
@@ -13,7 +13,7 @@ namespace CodingDad.Common.ViewModels
 		private bool _isDirty;
 
 		// Pointer to an external unmanaged resource.
-		private IntPtr handle;
+		private nint handle;
 
 		// Track whether Dispose has been called.
 		private bool isDisposed = false;
@@ -69,7 +69,7 @@ namespace CodingDad.Common.ViewModels
 		public virtual void Dispose (bool disposing)
 		{
 			// Check to see if Dispose has already been called.
-			if (!this.isDisposed)
+			if (!isDisposed)
 			{
 				// If disposing equals true, dispose all managed
 				// and unmanaged resources.
@@ -84,7 +84,7 @@ namespace CodingDad.Common.ViewModels
 				// If disposing is false,
 				// only the following code is executed.
 				CloseHandle(handle);
-				handle = IntPtr.Zero;
+				handle = nint.Zero;
 
 				// Note disposing has been done.
 				isDisposed = true;
@@ -93,7 +93,7 @@ namespace CodingDad.Common.ViewModels
 
 		public virtual void OnPropertyChanged ([CallerMemberName] string? propertyName = null)
 		{
-			this.VerifyPropertyName(propertyName);
+            VerifyPropertyName(propertyName);
 			PropertyChangedEventHandler? handler = PropertyChanged;
 			if (handler != null)
 			{
@@ -123,7 +123,7 @@ namespace CodingDad.Common.ViewModels
 		// Use interop to call the method necessary
 		// to clean up the unmanaged resource.
 		[System.Runtime.InteropServices.DllImport("Kernel32")]
-		private static extern bool CloseHandle (IntPtr handle);
+		private static extern bool CloseHandle (nint handle);
 
 		[Conditional("DEBUG")]
 		private void VerifyPropertyName (string? propertyName)

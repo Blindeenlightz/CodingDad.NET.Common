@@ -1,6 +1,8 @@
+using CodingDad.NET.Common.DragDrop.Drag;
+using CodingDad.NET.Common.DragDrop.Enums;
 using System.Windows;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Interfaces
 {
     /// <summary>
     /// Interface implemented by Drop Info Builders.

@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+using CodingDad.NET.Common.DragDrop.Interfaces;
+using CodingDad.NET.Common.DragDrop.Utilities;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +9,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace CodingDad.DragAndDrop
+namespace CodingDad.NET.Common.DragDrop.Drop
 {
     /// <summary>
     /// A default insertion drop handler for the most common usages

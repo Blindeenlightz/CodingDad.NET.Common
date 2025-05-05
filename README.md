@@ -1404,7 +1404,7 @@ To integrate the user creation and login functionality into your application, fo
 ```xml
 <!-- UserCreateView.xaml -->
 <UserControl
-    x:Class="CodingDad.Common.UserCreationLogin.Views.UserCreateView"
+    x:Class="CodingDad.NET.Common.UserCreationLogin.Views.UserCreateView"
     DataContext="{Binding UserViewModelInstance}"
     ...>
     ...
@@ -1412,7 +1412,7 @@ To integrate the user creation and login functionality into your application, fo
 
 <!-- UserLoginView.xaml -->
 <UserControl
-    x:Class="CodingDad.Common.UserCreationLogin.Views.UserLoginView"
+    x:Class="CodingDad.NET.Common.UserCreationLogin.Views.UserLoginView"
     DataContext="{Binding UserViewModelInstance}"
     ...>
     ...
