@@ -4,7 +4,34 @@
     <TargetFramework>net8.0-windows7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+
+    <!-- NuGet Packaging -->
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <Authors>Jamie Braaksma</Authors>
+    <Company>CodingDad</Company>
+    <Description>A reusable .NET library for WPF apps, with logging, storage helpers, MEF composition, and MVVM utilities.</Description>
+    <PackageTags>dotnet wpf class-library logging mef mvvm sql mongodb sqlite</PackageTags>
+    <PackageId>CodingDad.NET.Common</PackageId>
+    <RepositoryUrl>https://github.com/Blindeenlightz/CodingDad.NET.Common</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageIcon>Icon.png</PackageIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\Icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Icons\Icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
@@ -21,6 +48,13 @@
     <PackageReference Include="System.Data.SQLite" Version="1.0.119" />
     <PackageReference Include="System.Drawing.Common" Version="9.0.4" />
     <PackageReference Include="System.Text.Json" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
