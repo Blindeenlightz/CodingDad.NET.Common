@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="Icons/icon.png" alt="Project Icon" height="300"/>
+</p>
+
 # CodingDad.NET.Common
 
 Welcome to the `CodingDad.NET.Common` class library! This repository contains a collection of commonly used classes and utilities designed to streamline and enhance your .NET projects. As a developer, you often encounter repetitive tasks and patterns across different projects. The `CodingDad.NET.Common` library aims to provide a reusable, well-structured set of tools to help you write cleaner, more efficient code, and reduce redundancy.
@@ -322,18 +326,18 @@ To use the `RelayCommand` class in your application, follow these steps:
     public class MainViewModel
     {
         public ICommand MyCommand { get; }
-
+    
         public MainViewModel()
         {
             MyCommand = new RelayCommand(ExecuteMyCommand, CanExecuteMyCommand);
         }
-
+    
         private bool CanExecuteMyCommand(object? parameter)
         {
             // Your logic to determine if the command can execute
             return true;
         }
-
+    
         private void ExecuteMyCommand(object parameter)
         {
             // Your logic to execute the command
@@ -1099,13 +1103,13 @@ To use the `ColorConsoleLogger` class, follow these steps:
 2. Log messages with different log levels:
     ```csharp
     var logger = new ColorConsoleLogger("MyLogger", () => new ColorConsoleLoggerConfiguration());
-
+    
     // Log an informational message
     logger.Log(LogLevel.Information, new EventId(1, "InfoEvent"), "This is an informational message.", null, (state, exception) => state);
-
+    
     // Log an error message
     logger.Log(LogLevel.Error, new EventId(2, "ErrorEvent"), "This is an error message.", null, (state, exception) => state);
-
+    
     // Log a debug message
     logger.Log(LogLevel.Debug, new EventId(3, "DebugEvent"), "This is a debug message.", null, (state, exception) => state);
     ```
