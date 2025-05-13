@@ -6,11 +6,38 @@
 
 Welcome to the `CodingDad.NET.Common` class library! This repository contains a collection of commonly used classes and utilities designed to streamline and enhance your .NET projects. As a developer, you often encounter repetitive tasks and patterns across different projects. The `CodingDad.NET.Common` library aims to provide a reusable, well-structured set of tools to help you write cleaner, more efficient code, and reduce redundancy.
 
+## Installation
+
+You can consume the `CodingDad.NET.Common` library in two ways:
+
+### 🔌 Option 1: Add via NuGet Package
+
+If you're using the `.nupkg` file from the [Releases](https://github.com/yourusername/CodingDad.NET.Common/releases) section:
+
+1. Download `CodingDad.NET.Common.1.0.0.nupkg`
+2. In Visual Studio:
+   - Right-click on your solution and select **Manage NuGet Packages for Solution...**
+   - Click the gear icon ⚙ in the top-right and choose **Add Package Source**
+   - Set the path to the folder containing the `.nupkg`
+3. Search for `CodingDad.NET.Common` in the **Browse** tab and install it
+
+### 🛠️ Option 2: Manual Reference
+
+1. Download the following from the [Releases](https://github.com/yourusername/CodingDad.NET.Common/releases) page:
+   - `CodingDad.NET.Common.dll`
+   - `CodingDad.NET.Common.pdb` *(optional for debugging)*
+   - `CodingDad.NET.Common.xml` *(optional for IntelliSense docs)*
+2. In your project:
+   - Right-click **References** → **Add Reference...**
+   - Browse to and select the DLL
+
+> ⚠️ Dependencies like `Microsoft.Extensions.Logging` and `Newtonsoft.Json` must be installed manually via NuGet.
+
+
 ## Overview
 
 The `CodingDad.NET.Common` library is a versatile and comprehensive set of components built to support a wide range of .NET applications. Whether you're developing web applications, desktop applications, or services, this library offers essential utilities to simplify your development process.
 
-## Table of Contents
 
 ## Table of Contents
 
