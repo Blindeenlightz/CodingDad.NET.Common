@@ -119,6 +119,7 @@ The `CodingDad.NET.Common` library is a versatile and comprehensive set of compo
   - [Properties](#properties-5)
   - [Methods](#methods-21)
   - [Usage](#usage-17)
+- [Attributions](#attributions)
 
 ## Behaviors
 
@@ -1552,3 +1553,5 @@ public class MyViewModel : BaseViewModel
 
 In this example, MyViewModel inherits from BaseViewModel and uses the SetProperty method to manage the Name property, ensuring that property change notifications are sent to the UI.
 
+# Attributions
+Icon - <a href="https://www.flaticon.com/free-icons/toolkit" title="toolkit icons">Toolkit icons created by srip - Flaticon</a>
