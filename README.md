@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Icons/icon.png" alt="Project Icon" height="300"/>
+  <img src="Icons/Icon.png" alt="Project Icon" height="300"/>
 </p>
 
 # CodingDad.NET.Common
