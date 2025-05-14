@@ -12,7 +12,7 @@ You can consume the `CodingDad.NET.Common` library in two ways:
 
 ### 🔌 Option 1: Add via NuGet Package
 
-If you're using the `.nupkg` file from the [Releases](https://github.com/yourusername/CodingDad.NET.Common/releases) section:
+If you're using the `.nupkg` file from the [Releases](https://github.com/BlindeenLightz/CodingDad.NET.Common/releases) section:
 
 1. Download `CodingDad.NET.Common.1.0.0.nupkg`
 2. In Visual Studio:
@@ -23,7 +23,7 @@ If you're using the `.nupkg` file from the [Releases](https://github.com/youruse
 
 ### 🛠️ Option 2: Manual Reference
 
-1. Download the following from the [Releases](https://github.com/yourusername/CodingDad.NET.Common/releases) page:
+1. Download the following from the [Releases](https://github.com/BlindeenLightz/CodingDad.NET.Common/releases) page:
    - `CodingDad.NET.Common.dll`
    - `CodingDad.NET.Common.pdb` *(optional for debugging)*
    - `CodingDad.NET.Common.xml` *(optional for IntelliSense docs)*
