@@ -14,11 +14,11 @@ You can consume the `CodingDad.NET.Common` library in two ways:
 
 If you're using the `.nupkg` file from the [Releases](https://github.com/BlindeenLightz/CodingDad.NET.Common/releases) section:
 
-1. Download `CodingDad.NET.Common.1.0.0.nupkg`
+1. Download `CodingDad.NET.Common.1.0.0.nupkg` to a target folder.
 2. In Visual Studio:
    - Right-click on your solution and select **Manage NuGet Packages for Solution...**
    - Click the gear icon ⚙ in the top-right and choose **Add Package Source**
-   - Set the path to the folder containing the `.nupkg`
+   - Add a new source to the path of the folder containing the `.nupkg`
 3. Search for `CodingDad.NET.Common` in the **Browse** tab and install it
 
 ### 🛠️ Option 2: Manual Reference
